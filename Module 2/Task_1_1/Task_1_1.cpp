@@ -48,6 +48,8 @@ int main()
             }
             fout << arr1[0];
             fout.close();
+            delete[] arr1;
+            delete[] arr2;
         }
     }
     else {
