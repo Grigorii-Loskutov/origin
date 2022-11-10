@@ -48,9 +48,9 @@ int main()
             }
             fout << arr1[0];
             fout.close();
-            delete[] arr1;
             delete[] arr2;
         }
+        delete[] arr1;
     }
     else {
         std::cout << "Не получилось открыть файл!";
