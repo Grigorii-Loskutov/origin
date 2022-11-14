@@ -52,12 +52,14 @@ int main()
 		case months::December:
 			std::cout << "Декабрь\n";
 			break;
+		case months::Out:
+			std::cout << "До свидания\n";
+			break;
 		default:
 			std::cout << "Неправильный номер!\n";
 			break;
 		}
 		
 	} while (month_number != 0);
-	std::cout << "До свидания\n";
 }
 
