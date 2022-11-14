@@ -13,7 +13,7 @@ struct address {
     unsigned index;
 };
 
-void struct_print(address* addr_exemplar) {
+void address_print(address* addr_exemplar) {
     std::cout << "Страна: " << addr_exemplar->country << "\n";
     std::cout << "Город: " << addr_exemplar->city << "\n";
     std::cout << "Улица: " << addr_exemplar->street << "\n";
@@ -30,7 +30,7 @@ int main()
     SetConsoleOutputCP(1251);
     address addr1 = { "Россия","Таганрог","Петровская",100,1,347900 };
     address addr2 = { "Россия","Лермонтов","Волкова",14,3,357340 };
-    struct_print(&addr1);
+    address_print(&addr1);
     std::cout << "\n";
-    struct_print(&addr2);
+    address_print(&addr2);
 }
