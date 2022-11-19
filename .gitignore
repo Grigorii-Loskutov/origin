@@ -1,0 +1,38 @@
+Module 2/Task_1_1/.vs/
+Module 2/Task_1_1/Task_1_1.vcxproj.filters
+Module 2/Task_1_1/Task_1_1.vcxproj.user
+Module 2/Task_1_1/x64/
+Module 2/Task_2_1/.vs/Task_2_1/v17/Browse.VC.db
+Module 2/Task_2_1/.vs/Task_2_1/v17/Browse.VC.db-shm
+Module 2/Task_2_1/.vs/Task_2_1/v17/Browse.VC.db-wal
+Module 2/Task_2_1/.vs/Task_2_1/v17/Browse.VC.opendb
+Module 2/Task_2_1/.vs/Task_2_1/v17/ipch/AutoPCH/de374774a78cc723/TASK_2_1.ipch
+Module 2/Task_2_1/Task_2_1.vcxproj.filters
+Module 2/Task_2_1/Task_2_1.vcxproj.user
+*.exe
+*.log
+*.ilk
+*.obj
+*.tlog
+*.recipe
+*.idb
+*.pdb
+Module 2/Task_2_1/.vs/Task_2_1/v17/.suo
+Module 2/Task_2_1/x64/Debug/Task_2_1.vcxproj.FileListAbsolute.txt
+Module 2/Task_2_1/.vs/Task_2_1/FileContentIndex/98a476a9-f0be-4226-ab26-b72c46d05816.vsidx
+*.db-wal
+*.db-shm
+Module 2/Task_2_3/.vs/Task_2_3/v17/ipch/AutoPCH/906c5906a0d35963/TASK_2_3.ipch
+*.opendb
+*.db
+*.lock
+Module 2/Task_2_2/x64/Debug/Task_2_2.vcxproj.FileListAbsolute.txt
+*.filters
+*.vsidx
+*.ipch
+Module 2/Task_2_2/.vs/Task_2_2/v17/.suo
+*.user
+*.txt
+Module 2/Task_2_3/.vs/Task_2_3/v17/.suo
+Module 2/Task_3_1/.vs/Task_3_1/v17/.suo
+Module 2/Task_3_2/.vs/Task_3_2/v17/.suo

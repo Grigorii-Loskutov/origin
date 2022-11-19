@@ -55,19 +55,22 @@ int main()
     SetConsoleOutputCP(1251);
     double num1 = 0, num2 = 0;
     while (1) {
-        std::cout << "Введите num1: "; std::cin >> num1;
-        std::cout << "Введите num2: "; std::cin >> num2;
         Calculator example;
-        if ((example.set_num1(num1) == false) or (example.set_num2(num2) == false)) {
+        std::cout << "Введите num1: "; std::cin >> num1;
+        if (example.set_num1(num1) == false) {
             std::cout << "Невернный ввод!\n";
+            continue;
         }
-        else {
-            std::cout << "num1 + num2 = " << example.add() << "\n";
-            std::cout << "num1 - num2 = " << example.subtract_1_2() << "\n";
-            std::cout << "num2 - num1 = " << example.subtract_2_1() << "\n";
-            std::cout << "num1 * num2 = " << example.multiply() << "\n";
-            std::cout << "num1 / num2 = " << example.divide_1_2() << "\n";
-            std::cout << "num2 / num1 = " << example.divide_2_1() << "\n";
+        std::cout << "Введите num2: "; std::cin >> num2;
+        if (example.set_num2(num2) == false) {
+            std::cout << "Невернный ввод!\n";
+            continue;
         }
+        std::cout << "num1 + num2 = " << example.add() << "\n";
+        std::cout << "num1 - num2 = " << example.subtract_1_2() << "\n";
+        std::cout << "num2 - num1 = " << example.subtract_2_1() << "\n";
+        std::cout << "num1 * num2 = " << example.multiply() << "\n";
+        std::cout << "num1 / num2 = " << example.divide_1_2() << "\n";
+        std::cout << "num2 / num1 = " << example.divide_2_1() << "\n";
     }
 }
