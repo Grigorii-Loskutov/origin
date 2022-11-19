@@ -17,7 +17,7 @@ public:
     Counter() {
         counter = 1;
     }
-    void adder(char command) {
+    int adder(char command) {
         switch (command) {
         case '+':
             counter++;
@@ -26,7 +26,8 @@ public:
             counter--;
             break;
         case '=':
-            std::cout << counter << "\n";
+            //std::cout << counter << "\n";
+            return counter;
             break;
         default:
             NULL;
@@ -55,6 +56,9 @@ int main()
         std::cout << "Введите команду ('+', '-', '=' или 'x'): ";
         std::cin >> key;
         ticker.adder(key);
+        if (key == '=') {
+            std::cout << ticker.adder(key) << "\n";
+        }
     } while (key != 'x');
     std::cout << "До свидания!\n";
 }
