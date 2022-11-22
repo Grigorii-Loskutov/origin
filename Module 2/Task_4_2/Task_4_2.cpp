@@ -32,12 +32,12 @@ public:
 		this->house = house;
 		this->apartament = apartment;
 	}
-	void address_add(std::string city, std::string street, int house, int apartment) {
+	/*void address_add(std::string city, std::string street, int house, int apartment) {
 		this->city = city;
 		this->street = street;
 		this->house = house;
 		this->apartament = apartment;
-	}
+	}*/
 	std::string get_city() {
 		return city;
 	}
@@ -75,15 +75,15 @@ void main(int argc, char** argv)
 			std::string temp_street; fin >> temp_street;
 			int temp_house; fin >> temp_house;
 			int temp_apartment; fin >> temp_apartment;
-			address_from_file[address_iter].address_add(temp_city, temp_street, temp_house, temp_apartment);
+			address_from_file[address_iter] = address(temp_city, temp_street, temp_house, temp_apartment);
 		}
-		//std::sort(address_from_file[0], address_from_file[address_quantity], [](address const& a, address const& b) -> bool { return a.house < b.house; });
 		sort_addr(address_from_file, address_quantity);
 		std::ofstream fout("out.txt");
 		fout << address_quantity; fout << "\n";
 		for (unsigned address_iter = 0; address_iter < address_quantity; address_iter++) {
 			fout << address_from_file[address_iter].get_output_address();
 		}
+		fin.close();
 		fout.close();
 		delete[] address_from_file;
 	}
