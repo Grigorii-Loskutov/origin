@@ -49,7 +49,7 @@ void sort_addr(address* addresses, int addresses_n) {
 		swapped = false;
 		for (int iter = 1; iter < addresses_n; iter++)
 		{
-			if (addresses[iter - 1].get_city()[0] > addresses[iter].get_city()[0])
+			if (addresses[iter - 1].get_city() > addresses[iter].get_city())
 			{
 				address temp = addresses[iter - 1];
 				addresses[iter - 1] = addresses[iter];
