@@ -17,6 +17,8 @@ Module 2/Task_2_1/Task_2_1.vcxproj.user
 *.recipe
 *.idb
 *.pdb
+*.suo
+*.enc
 Module 2/Task_2_1/.vs/Task_2_1/v17/.suo
 Module 2/Task_2_1/x64/Debug/Task_2_1.vcxproj.FileListAbsolute.txt
 Module 2/Task_2_1/.vs/Task_2_1/FileContentIndex/98a476a9-f0be-4226-ab26-b72c46d05816.vsidx
@@ -32,7 +34,12 @@ Module 2/Task_2_2/x64/Debug/Task_2_2.vcxproj.FileListAbsolute.txt
 *.ipch
 Module 2/Task_2_2/.vs/Task_2_2/v17/.suo
 *.user
-*.txt
 Module 2/Task_2_3/.vs/Task_2_3/v17/.suo
 Module 2/Task_3_1/.vs/Task_3_1/v17/.suo
 Module 2/Task_3_2/.vs/Task_3_2/v17/.suo
+Module 2/Task_4_1/x64/Debug/Task_4_1.vcxproj.FileListAbsolute.txt
+Module 2/Task_4_1/.vs/Task_4_1/v17/.suo
+Module 2/Task_3_2/x64/Debug/task_3_2.obj.enc
+Module 2/Task_3_2/x64/Debug/Task_3_2.vcxproj.FileListAbsolute.txt
+Module 2/Task_3_1/x64/Debug/Task_3_1.vcxproj.FileListAbsolute.txt
+Module 2/Task_2_3/x64/Debug/Task_2_3.vcxproj.FileListAbsolute.txt

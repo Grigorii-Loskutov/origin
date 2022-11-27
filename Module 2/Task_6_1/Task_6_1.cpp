@@ -16,23 +16,22 @@ int main(int argc, char** argv)
 	std::cout << "Введите второе число: "; std::cin >> N2;
 	std::cout << "Выберите операцию(1 - сложение, 2 вычитание, 3 - умножение, 4 - деление, 5 - возведение в целую (!) степень) : ";
 	std::cin >> operation;
-	math_func calc1;
 	switch (operation)
 	{
 	case 1:
-		std::cout << N1 << " + " << N2 << " = " << calc1.sum(N1,N2);
+		std::cout << N1 << " + " << N2 << " = " << sum_my(N1,N2);
 		break;
 	case 2:
-		std::cout << N1 << " - " << N2 << " = " << calc1.sub(N1, N2);
+		std::cout << N1 << " - " << N2 << " = " << sub_my(N1, N2);
 		break;
 	case 3:
-		std::cout << N1 << " * " << N2 << " = " << calc1.mult(N1, N2);
+		std::cout << N1 << " * " << N2 << " = " << mult_my(N1, N2);
 		break;
 	case 4:
-		std::cout << N1 << " / " << N2 << " = " << calc1.div(N1, N2);
+		std::cout << N1 << " / " << N2 << " = " << div_my(N1, N2);
 		break;
 	case 5:
-		std::cout << N1 << " в степени " << N2 << " = " << calc1.pow(N1, N2);
+		std::cout << N1 << " в степени " << N2 << " = " << pow_my(N1, N2);
 		break;
 
 	default:
