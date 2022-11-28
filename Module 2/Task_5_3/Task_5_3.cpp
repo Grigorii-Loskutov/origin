@@ -11,13 +11,13 @@ protected:
 	std::string name;
 	double a, b, c, d;
 	double A, B, C, D;
+public:
 	virtual bool check() {
 		if (side_count == 0) {
 			return 1;
 		}
 		else return 0;
 	}
-public:
 	Figure(unsigned side_count, std::string name, double a, double b, double c, double d, double A, double B, double C, double D) {
 		this->side_count = side_count;
 		this->name = name;
@@ -30,8 +30,37 @@ public:
 		this->a = 0; this->b = 0; this->c = 0; this->d = 0;
 		this->A = 0; this->B = 0; this->C = 0; this->D = 0;
 	}
-	
-	void print_info() {
+	unsigned get_side_count() {
+		return side_count;
+	}
+	std::string get_name() {
+		return name;
+	}
+	double get_a() {
+		return a;
+	}
+	double get_b() {
+		return b;
+	}
+	double get_c() {
+		return c;
+	}
+	double get_d() {
+		return d;
+	}
+	double get_A() {
+		return A;
+	}
+	double get_B() {
+		return B;
+	}
+	double get_C() {
+		return C;
+	}
+	double get_D() {
+		return D;
+	}
+	/*void print_info() {
 		std::cout << "\n";
 		std::cout << name << ":";
 		if (check() == true) {
@@ -55,8 +84,34 @@ public:
 			NULL;
 		}
 		std::cout << "\n";
-	}
+	}*/
 };
+
+void print_figure(Figure* fig) {
+	std::cout << "\n";
+	std::cout << fig->get_name() << ":";
+	if (fig->check() == true) {
+		std::cout << "\nПравильная";
+	}
+	else {
+		std::cout << "\nНеправильная";
+	}
+	std::cout << "\nКоличество сторон: " << fig->get_side_count();
+	if (fig->get_side_count() == 3) {
+		std::cout << "\nСтороны: " << "a = " << fig->get_a() << " b = " << fig->get_b() << " c = " << fig->get_c();
+		std::cout << "\nУглы: " << "A = " << fig->get_A() << " B = " << fig->get_B() << " C = " << fig->get_C();
+		std::cout << "\n";
+	}
+	else if (fig->get_side_count() == 4) {
+		std::cout << "\nСтороны: " << "a = " "a = " << fig->get_a() << " b = " << fig->get_b() << " c = " << fig->get_c() << " d = " << fig->get_d();
+		std::cout << "\nУглы: " << "A = " << fig->get_A() << " B = " << fig->get_B() << " C = " << fig->get_C()<< " D = " << fig->get_D();
+		std::cout << "\n";
+	}
+	else {
+		NULL;
+	}
+	std::cout << "\n";
+}
 class Triangle :public Figure {
 public:
 	Triangle() : Figure(3, "Default Triangle", 1, 1, 1, 0, 60, 60, 60, 0) {}
@@ -167,36 +222,36 @@ int main()
 	SetConsoleOutputCP(1251);
 
 	Figure fig00;
-	fig00.print_info();
+	print_figure(&fig00);
 
 	Triangle fig01("Треугольник", 10, 20, 30, 50, 60, 70);
-	fig01.print_info();
+	print_figure(&fig01);
 
 	Rectangular_Triangle fig02(10, 20, 30, 50, 60, 90);
-	fig02.print_info();
+	print_figure(&fig02);
 
 	Rectangular_Triangle fig03(10, 20, 30, 50, 40, 90);
-	fig03.print_info();
+	print_figure(&fig03);
 
 	Isosceles_Triangle fig04(10, 20, 10, 50, 60, 50);
-	fig04.print_info();
+	print_figure(&fig04);
 
 	Equilateral_Triangle fig05(30, 30, 30, 60, 60, 60);
-	fig05.print_info();
+	print_figure(&fig05);
 
 	Quadrangle fig06("Четырехугольник", 10, 20, 30, 40, 50, 60, 70, 80);
-	fig06.print_info();
+	print_figure(&fig06);
 
 	Rectangle_ fig07(10, 20, 10, 20, 90, 90, 90, 90);
-	fig07.print_info();
+	print_figure(&fig07);
 
 	Square fig08(20, 20, 20, 20, 90, 90, 90, 90);
-	fig08.print_info();
+	print_figure(&fig08);;
 
 	Parallelogram fig09(20, 30, 20, 30, 30, 40, 30, 40);
-	fig09.print_info();
+	print_figure(&fig09);
 
 	Rhombus fig10(30, 30, 30, 30, 30, 40, 30, 40);
-	fig10.print_info();
+	print_figure(&fig10);
 }
 
