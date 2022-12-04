@@ -47,7 +47,7 @@ int main()
 	print_info(&fig4);
 	Quadrangle fig5("Четырехугольник", 10, 20, 30, 40, 50, 60, 70, 80);
 	print_info(&fig5);
-	Rectangle_ fig6(10, 20);  // почему-то имя Кусефтпде занято...
+	Rectangle_ fig6(10, 20);  // почему-то имя Rectangle занято...
 	print_info(&fig6);
 	Square fig7(20);
 	print_info(&fig7);
