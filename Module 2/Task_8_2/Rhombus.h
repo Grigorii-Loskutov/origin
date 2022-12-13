@@ -4,5 +4,5 @@
 
 class Rhombus :public Quadrangle {
 public:
-	Rhombus(double a, double A, double B);
+	Rhombus(double a, double b, double c, double d, double A, double B, double C, double D);
 };

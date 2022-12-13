@@ -4,5 +4,5 @@
 
 class Rectangular_Triangle :public Triangle {
 public:
-	Rectangular_Triangle(double a, double b, double c, double A, double B);
+	Rectangular_Triangle(double a, double b, double c, double A, double B, double C);
 };

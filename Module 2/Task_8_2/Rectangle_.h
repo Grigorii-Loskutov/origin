@@ -4,5 +4,5 @@
 
 class Rectangle_ :public Quadrangle {
 public:
-	Rectangle_(double a, double b);
+	Rectangle_(double a, double b, double c, double d, double A, double B, double C, double D);
 };
