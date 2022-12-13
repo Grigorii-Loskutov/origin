@@ -139,6 +139,10 @@
     <ClCompile Include="Task_8_2.cpp" />
     <ClCompile Include="Triangle.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="FigureCreationException.h" />
+    <ClInclude Include="Figure_Creation_Except.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
