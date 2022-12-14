@@ -1,21 +1,29 @@
-﻿//#include <string.h>
-//#include <iostream>
-//#include <sstream>
-
+﻿#include <string.h>
+#include <iostream>
+#include <sstream>
 #include "Figure.h"
 #include "Figure_Creation_Except.h"
 
 Figure::Figure(unsigned side_count, std::string name, double a, double b, double c, double d, double A, double B, double C, double D) {
-	//if (side_count != 0) {
-	//	std::stringstream ss;
-	//	ss << name << "(стороны " << a << ", " << b << ", " << c << "; углы " << A << ", " << B << ", " << C << ") не был создан. ";
-	//	ss << "Причина: количество сторон больше 0";
-	//	throw Figure_Creation_Except(ss.str());
-	//}
-	this->side_count = side_count;
-	this->name = name;
-	this->a = a; this->b = b; this->c = c; this->d = d;
-	this->A = A; this->B = B; this->C = C, this->D = D;
+	if (name == "Фигура" and side_count != 0) {
+		std::stringstream ss;
+		ss << name << "(стороны " << a << ", " << b << ", " << c << "; углы " << A << ", " << B << ", " << C << ") не был создан. ";
+		ss << "Причина: количество сторон больше 0";
+		throw Figure_Creation_Except(ss.str());
+	}
+	else if (name == "Фигура" and side_count == 0) {
+		this->side_count = 0;
+		this->name = "Фигура";
+		this->a = 0; this->b = 0; this->c = 0; this->d = 0;
+		this->A = 0; this->B = 0; this->C = 0; this->D = 0;
+	}
+	else 
+	{
+		this->side_count = side_count;
+		this->name = name;
+		this->a = a; this->b = b; this->c = c; this->d = d;
+		this->A = A; this->B = B; this->C = C, this->D = D;
+	}
 }
 Figure::Figure() {
 	this->side_count = 0;

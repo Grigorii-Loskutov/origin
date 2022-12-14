@@ -1,4 +1,4 @@
-#include <string.h>
+﻿#include <string.h>
 #include <iostream>
 #include <sstream>
 #include "Triangle.h"
@@ -14,5 +14,9 @@ Triangle::Triangle(std::string name, double a, double b, double c, double A, dou
 		ss << "Причина: сумма углов не равна 180";
 		throw Figure_Creation_Except(ss.str());
 	}
+	this->name = name;
+	this->side_count = 3;
+	this->a = a; this->b = b; this->c = c; this->d = 0;
+	this->A = A; this->B = B; this->C = C; this->D = 0;
 	
 }

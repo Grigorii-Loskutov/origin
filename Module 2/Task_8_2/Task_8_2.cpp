@@ -44,6 +44,13 @@ void print_info(Figure* figure) {
 		std::cout << "\nУглы: " << "A = " << figure->get_A() << " B = " << figure->get_B() << " C = " << figure->get_C();
 		std::cout << "\n";
 	}
+	if (figure->get_side_count() == 0) {
+		std::cout << "\n";
+		std::cout << figure->get_name();
+		std::cout << "\nСтороны: нет";
+		std::cout << "\nУглы: нет";
+		std::cout << "\n";
+	}
 	else {
 		std::cout << "\n";
 		std::cout << figure->get_name();
@@ -58,6 +65,19 @@ int main(int argc, char** argv)
 	setlocale(LC_ALL, "Russian");
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
+	// Базовая фигура
+	try {
+		Figure fig0(3, "Фигура", 10, 20, 30, 10, 50, 60, 70, 90);
+		print_info(&fig0);
+	}
+	catch (const Figure_Creation_Except& ex) { std::cout << ex.what() << "\n"; }
+
+	try {
+		Figure fig0(0, "Фигура", 10, 20, 30, 10, 50, 60, 70, 90);
+		print_info(&fig0);
+	}
+	catch (const Figure_Creation_Except& ex) { std::cout << ex.what() << "\n"; }
+
 	//Треугольник
 	try {
 		Triangle fig1("Треугольник", 10, 20, 30, 50, 60, 70);
