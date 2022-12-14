@@ -10,8 +10,8 @@ Triangle::Triangle(std::string name, double a, double b, double c, double A, dou
 	if ((A + B + C) != 180) {
 		std::stringstream ss;
 		ss << "\n";
-		ss << name << "(ñòîðîíû " << a << ", " << b << ", " << c << "; óãëû " << A << ", " << B << ", " << C << ") íå áûë ñîçäàí. ";
-		ss << "Ïðè÷èíà: ñóììà óãëîâ íå ðàâíà 180";
+		ss << name << "(ÑÑ‚Ð¾Ñ€Ð¾Ð½Ñ‹ " << a << ", " << b << ", " << c << "; ÑƒÐ³Ð»Ñ‹ " << A << ", " << B << ", " << C << ") Ð½Ðµ Ð±Ñ‹Ð» ÑÐ¾Ð·Ð´Ð°Ð½. ";
+		ss << "ÐŸÑ€Ð¸Ñ‡Ð¸Ð½Ð°: ÑÑƒÐ¼Ð¼Ð° ÑƒÐ³Ð»Ð¾Ð² Ð½Ðµ Ñ€Ð°Ð²Ð½Ð° 180";
 		throw Figure_Creation_Except(ss.str());
 	}
 	

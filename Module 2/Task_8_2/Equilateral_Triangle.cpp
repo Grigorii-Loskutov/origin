@@ -1,22 +1,22 @@
-#include <string.h>
+п»ї#include <string.h>
 #include <iostream>
 #include <sstream>
 #include "Figure_Creation_Except.h"
 #include "Equilateral_Triangle.h"
 
-Equilateral_Triangle::Equilateral_Triangle(double a, double b, double c, double A, double B, double C) : Triangle("Равносторонний треугольник", a, b, c, A, B, C) {
+Equilateral_Triangle::Equilateral_Triangle(double a, double b, double c, double A, double B, double C) : Triangle("вЂ“Р°РІРЅРѕСЃС‚РѕСЂРѕРЅРЅРёР№ С‚СЂРµСѓРіРѕР»СЊРЅРёРє", a, b, c, A, B, C) {
 	if ((A != 60) or (B != 60) or (C != 60)) {
 		std::stringstream ss;
 		ss << "\n";
-		ss << name << "(стороны " << a << ", " << b << ", " << c << "; углы " << A << ", " << B << ", " << C << ") не был создан. ";
-		ss << "Причина: один из углов не равен 60 градусов";
+		ss << name << "(СЃС‚РѕСЂРѕРЅС‹ " << a << ", " << b << ", " << c << "; СѓРіР»С‹ " << A << ", " << B << ", " << C << ") РЅРµ Р±С‹Р» СЃРѕР·РґР°РЅ. ";
+		ss << "С•СЂРёС‡РёРЅР°: РѕРґРёРЅ РёР· СѓРіР»РѕРІ РЅРµ СЂР°РІРµРЅ 60 РіСЂР°РґСѓСЃРѕРІ";
 		throw Figure_Creation_Except(ss.str());
 	}
 	if ((c != a) or (c != b) or (a != b)) {
 		std::stringstream ss;
 		ss << "\n";
-		ss << name << "(стороны " << a << ", " << b << ", " << c << "; углы " << A << ", " << B << ", " << C << ") не был создан. ";
-		ss << "Причина: стороны не равны между собой";
+		ss << name << "(СЃС‚РѕСЂРѕРЅС‹ " << a << ", " << b << ", " << c << "; СѓРіР»С‹ " << A << ", " << B << ", " << C << ") РЅРµ Р±С‹Р» СЃРѕР·РґР°РЅ. ";
+		ss << "С•СЂРёС‡РёРЅР°: СЃС‚РѕСЂРѕРЅС‹ РЅРµ СЂР°РІРЅС‹ РјРµР¶РґСѓ СЃРѕР±РѕР№";
 		throw Figure_Creation_Except(ss.str());
 	}
 }

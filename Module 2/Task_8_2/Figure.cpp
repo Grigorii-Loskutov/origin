@@ -1,4 +1,4 @@
-//#include <string.h>
+п»ї//#include <string.h>
 //#include <iostream>
 //#include <sstream>
 
@@ -8,8 +8,8 @@
 Figure::Figure(unsigned side_count, std::string name, double a, double b, double c, double d, double A, double B, double C, double D) {
 	//if (side_count != 0) {
 	//	std::stringstream ss;
-	//	ss << name << "(стороны " << a << ", " << b << ", " << c << "; углы " << A << ", " << B << ", " << C << ") не был создан. ";
-	//	ss << "Причина: количество сторон больше 0";
+	//	ss << name << "(СЃС‚РѕСЂРѕРЅС‹ " << a << ", " << b << ", " << c << "; СѓРіР»С‹ " << A << ", " << B << ", " << C << ") РЅРµ Р±С‹Р» СЃРѕР·РґР°РЅ. ";
+	//	ss << "РџСЂРёС‡РёРЅР°: РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚РѕСЂРѕРЅ Р±РѕР»СЊС€Рµ 0";
 	//	throw Figure_Creation_Except(ss.str());
 	//}
 	this->side_count = side_count;

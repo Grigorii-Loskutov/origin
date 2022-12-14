@@ -1,22 +1,22 @@
-#include <string.h>
+п»ї#include <string.h>
 #include <iostream>
 #include <sstream>
 #include "Figure_Creation_Except.h"
 #include "Rhombus.h"
 
-Rhombus::Rhombus(double a, double b, double c, double d, double A, double B, double C, double D) : Quadrangle("Ромб", a, b, c, d, A, B, C, D) {
+Rhombus::Rhombus(double a, double b, double c, double d, double A, double B, double C, double D) : Quadrangle("Р РѕРјР±", a, b, c, d, A, B, C, D) {
 	if ((A != C) or (B != D)) {
 		std::stringstream ss;
 		ss << "\n";
-		ss << name << "(стороны " << a << ", " << b << ", " << c << ", " << d << "; углы " << A << ", " << B << ", " << C << ", " << D << ") не был создан. ";
-		ss << "Причина: углы A,C и B,D попарно не равны";
+		ss << name << "(СЃС‚РѕСЂРѕРЅС‹ " << a << ", " << b << ", " << c << ", " << d << "; СѓРіР»С‹ " << A << ", " << B << ", " << C << ", " << D << ") РЅРµ Р±С‹Р» СЃРѕР·РґР°РЅ. ";
+		ss << "РџСЂРёС‡РёРЅР°: СѓРіР»С‹ A,C Рё B,D РїРѕРїР°СЂРЅРѕ РЅРµ СЂР°РІРЅС‹";
 		throw Figure_Creation_Except(ss.str());
 	}
 	if ((a != c) or (a != b) or (a != c) or (a != d)) {
 		std::stringstream ss;
 		ss << "\n";
-		ss << name << "(стороны " << a << ", " << b << ", " << c << ", " << d << "; углы " << A << ", " << B << ", " << C << ", " << D << ") не был создан. ";
-		ss << "Причина: стороны не равны между собой";
+		ss << name << "(СЃС‚РѕСЂРѕРЅС‹ " << a << ", " << b << ", " << c << ", " << d << "; СѓРіР»С‹ " << A << ", " << B << ", " << C << ", " << D << ") РЅРµ Р±С‹Р» СЃРѕР·РґР°РЅ. ";
+		ss << "РџСЂРёС‡РёРЅР°: СЃС‚РѕСЂРѕРЅС‹ РЅРµ СЂР°РІРЅС‹ РјРµР¶РґСѓ СЃРѕР±РѕР№";
 		throw Figure_Creation_Except(ss.str());
 	}
 }

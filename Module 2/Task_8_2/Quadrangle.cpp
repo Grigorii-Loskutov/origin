@@ -1,4 +1,4 @@
-#include <string.h>
+ï»¿#include <string.h>
 #include <iostream>
 #include <sstream>
 #include "Figure_Creation_Except.h"
@@ -9,8 +9,8 @@ Quadrangle::Quadrangle(std::string name, double a, double b, double c, double d,
 	if ((A + B + C + D) != 360) {
 		std::stringstream ss;
 		ss << "\n";
-		ss << name << "(ñòîðîíû " << a << ", " << b << ", " << c << ", " << d << "; óãëû " << A << ", " << B << ", " << C << ", " << D << ") íå áûë ñîçäàí. ";
-		ss << "Ïðè÷èíà: ñóììà óãëîâ íå ðàâíà 360";
+		ss << name << "(ÑÑ‚Ð¾Ñ€Ð¾Ð½Ñ‹ " << a << ", " << b << ", " << c << ", " << d << "; ÑƒÐ³Ð»Ñ‹ " << A << ", " << B << ", " << C << ", " << D << ") Ð½Ðµ Ð±Ñ‹Ð» ÑÐ¾Ð·Ð´Ð°Ð½. ";
+		ss << "ÐŸÑ€Ð¸Ñ‡Ð¸Ð½Ð°: ÑÑƒÐ¼Ð¼Ð° ÑƒÐ³Ð»Ð¾Ð² Ð½Ðµ Ñ€Ð°Ð²Ð½Ð° 360";
 		throw Figure_Creation_Except(ss.str());
 	}
 }

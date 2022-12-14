@@ -1,15 +1,15 @@
-#include <string.h>
+п»ї#include <string.h>
 #include <iostream>
 #include <sstream>
 #include "Figure_Creation_Except.h"
 #include "Rectangular_Triangle.h"
 
-Rectangular_Triangle::Rectangular_Triangle(double a, double b, double c, double A, double B, double C) : Triangle("Прямоугольный треугольник", a, b, c, A, B, C) {
+Rectangular_Triangle::Rectangular_Triangle(double a, double b, double c, double A, double B, double C) : Triangle("РџСЂСЏРјРѕСѓРіРѕР»СЊРЅС‹Р№ С‚СЂРµСѓРіРѕР»СЊРЅРёРє", a, b, c, A, B, C) {
 	if (C != 90) {
 		std::stringstream ss;
 		ss << "\n";
-		ss << name << "(стороны " << a << ", " << b << ", " << c << "; углы " << A << ", " << B << ", " << C << ") не был создан. ";
-		ss << "Причина: угол C не равен 90 градусам";
+		ss << name << "(СЃС‚РѕСЂРѕРЅС‹ " << a << ", " << b << ", " << c << "; СѓРіР»С‹ " << A << ", " << B << ", " << C << ") РЅРµ Р±С‹Р» СЃРѕР·РґР°РЅ. ";
+		ss << "РџСЂРёС‡РёРЅР°: СѓРіРѕР» C РЅРµ СЂР°РІРµРЅ 90 РіСЂР°РґСѓСЃР°Рј";
 		throw Figure_Creation_Except(ss.str());
 	}
 }
