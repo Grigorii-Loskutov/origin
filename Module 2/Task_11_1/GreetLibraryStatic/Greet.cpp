@@ -3,6 +3,6 @@
 
 namespace Greet{
 	std::string Greet::greet(std::string name) {
-		return "Здравствуйте, " + name;
+		return "‡дравствуйте, " + name;
 	}
 }
