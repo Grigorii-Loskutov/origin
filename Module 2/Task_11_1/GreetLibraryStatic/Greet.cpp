@@ -1,8 +1,8 @@
-#include <string>
+п»ї#include <string>
 #include "Greet.h"
 
 namespace Greet{
 	std::string Greet::greet(std::string name) {
-		return "‡дравствуйте, " + name;
+		return "Р—РґСЂР°РІСЃС‚РІСѓР№С‚Рµ, " + name;
 	}
 }
