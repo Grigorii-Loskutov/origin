@@ -1,4 +1,8 @@
-Module 2/Task_1_1/.vs/
+Module 2/Task_**_1/.vs
+Module 2/Task_**_*/out
+Module 2/Task_*_*/.vs/
+Module 2/Task_*_*/x64/
+Module 2/Task_*_*/x64/Debug/*.txt
 Module 2/Task_1_1/Task_1_1.vcxproj.filters
 Module 2/Task_1_1/Task_1_1.vcxproj.user
 Module 2/Task_1_1/x64/
@@ -55,4 +59,9 @@ Module 2/Task_6_3/x64/Debug/Task_6_3.vcxproj.FileListAbsolute.txt
 .vs/VSWorkspaceState.json
 .vs/slnx.sqlite
 Module 2/Task_7_3/x64/Release/Task_7_3.ipdb
+.vs/slnx.sqlite
+Module 2/Task_11_1/GreetLibraryStatic/x64/Debug/GreeterLibraryStatic.vcxproj.FileListAbsolute.txt
+Module 2/Task_11_1/GreetLibraryStatic/x64/Debug/GreetLibraryStatic.lib
+Module 2/Task_11_1/GreetClient/x64/Debug/GreetClient.vcxproj.FileListAbsolute.txt
+.vs/slnx.sqlite
 .vs/slnx.sqlite
