@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include <string>
 
-#ifdef LEAVERLIBRARYDYNAMIC_EXPORTS
+#ifdef LEAVERDYNAMICLIBRARY_EXPORTS
 #define LEAVERLIBRARY_API __declspec(dllexport)
 #else
 #define LEAVERLIBRARY_API __declspec(dllimport)
