@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <algorithm>
 
 #include "RaceControl.h"
 #include "Vehicle.h"
@@ -206,30 +207,59 @@ std::string RaceControl::get_race_status() {
 }
 std::string RaceControl::get_results() {
 	std::stringstream ss;
+	Vehicle* vehicle_arr = new Vehicle[vehicle_summ];
+	unsigned iter = 0;
 	if (Camel_created == true) {
-		ss << Camel_veh.get_name() << ". Результат: " << Camel_veh.get_time(range) << "\n";
+		//ss << Camel_veh.get_name() << ". Результат: " << Camel_veh.get_time(range) << "\n";
+		vehicle_arr[iter] = Camel_veh; iter++;
 	}
 	if (Broom_created == true) {
-		ss << Broom_veh.get_name() << ". Результат: " << Broom_veh.get_time(range) << "\n";
+		//ss << Broom_veh.get_name() << ". Результат: " << Broom_veh.get_time(range) << "\n";
+		vehicle_arr[iter] = Broom_veh; iter++;
 	}
 	if (Boots_created == true) {
-		ss << Boots_veh.get_name() << ". Результат: " << Boots_veh.get_time(range) << "\n";
+		//ss << Boots_veh.get_name() << ". Результат: " << Boots_veh.get_time(range) << "\n";
+		vehicle_arr[iter] = Boots_veh; iter++;
 	}
 	if (FastCamel_created == true) {
-		ss << FastCamel_veh.get_name() << ". Результат: " << FastCamel_veh.get_time(range) << "\n";
+		//ss << FastCamel_veh.get_name() << ". Результат: " << FastCamel_veh.get_time(range) << "\n";
+		vehicle_arr[iter] = FastCamel_veh; iter++;
 	}
 	if (Centaur_created == true) {
-		ss << Centaur_veh.get_name() << ". Результат: " << Centaur_veh.get_time(range) << "\n";
+		//ss << Centaur_veh.get_name() << ". Результат: " << Centaur_veh.get_time(range) << "\n";
+		vehicle_arr[iter] = Centaur_veh; iter++;
 	}
 	if (Carpet_created == true) {
-		ss << Carpet_veh.get_name() << ". Результат: " << Carpet_veh.get_time(range) << "\n";
+		//ss << Carpet_veh.get_name() << ". Результат: " << Carpet_veh.get_time(range) << "\n";
+		vehicle_arr[iter] = Carpet_veh; iter++;
 	}
 	if (Eagle_created == true) {
-		ss << Eagle_veh.get_name() << ". Результат: " << Eagle_veh.get_time(range) << "\n";
+		//ss << Eagle_veh.get_name() << ". Результат: " << Eagle_veh.get_time(range) << "\n";
+		vehicle_arr[iter] = Eagle_veh;
 	}
 	ss << "\n";
+	sort_veh(vehicle_arr);
+	for (unsigned iter = 0; iter < vehicle_summ; iter++) {
+		ss << iter + 1 << ". " << vehicle_arr[iter].get_name() << ". Результат: " << vehicle_arr[iter].get_time(range) << "\n";
+	}
 	return ss.str();
 }
 unsigned RaceControl::get_vehicle_summ() {
 	return vehicle_summ;
+}
+void RaceControl::sort_veh(Vehicle* vehicle_arr) {
+	bool swapped = false;
+	do {
+		swapped = false;
+		for (unsigned iter = 1; iter < vehicle_summ; iter++)
+		{
+			if (vehicle_arr[iter - 1].get_time(range) > vehicle_arr[iter].get_time(range))
+			{
+				Vehicle temp = vehicle_arr[iter - 1];
+				vehicle_arr[iter - 1] = vehicle_arr[iter];
+				vehicle_arr[iter] = temp;
+				swapped = true;
+			}
+		}
+	} while (swapped);
 }

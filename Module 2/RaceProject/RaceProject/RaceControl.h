@@ -36,6 +36,7 @@ private:
 	Centaur Centaur_veh = Centaur::Centaur();
 	Carpet Carpet_veh = Carpet::Carpet();
 	unsigned vehicle_summ = 0;
+	void sort_veh(Vehicle* vehicle_arr);
 
 public:
 	RaceControl();
