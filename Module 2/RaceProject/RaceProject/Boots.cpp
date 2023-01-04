@@ -1,6 +1,6 @@
-#include <string.h>
+п»ї#include <string.h>
 #include "Boots.h"
-Boots::Boots() : Vehicle(true, "Ботинки-вездеходы", 6, 60, 10, 5, 0) {}
+Boots::Boots() : Vehicle(true, "Р‘РѕС‚РёРЅРєРё-РІРµР·РґРµС…РѕРґС‹", 6, 60, 10, 5, 0) {}
 
 void Boots::calc_time (double range) {
 	time = range / speed;

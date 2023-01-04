@@ -1,4 +1,4 @@
-#include <iostream>
+п»ї#include <iostream>
 #include <string>
 #include <sstream>
 #include <algorithm>
@@ -57,14 +57,14 @@ std::string RaceControl::vechicle_registration(unsigned number) {
 		{
 			if (Boots_created == false) {
 				Boots_created = true; vehicle_summ++;
-				return "Ботнки-вездеходы успешно зарегистрированы!\n";
+				return "Р‘РѕС‚РЅРєРё-РІРµР·РґРµС…РѕРґС‹ СѓСЃРїРµС€РЅРѕ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅС‹!\n";
 			}
 			else {
-				return "Ботнки-вездеходы уже были зарегистрированы!\n";
+				return "Р‘РѕС‚РЅРєРё-РІРµР·РґРµС…РѕРґС‹ СѓР¶Рµ Р±С‹Р»Рё Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅС‹!\n";
 			}
 		}
 		else {
-			return "Ботинки-вездеходы невозможно зарегистрировать в воздушной гонке";
+			return "Р‘РѕС‚РёРЅРєРё-РІРµР·РґРµС…РѕРґС‹ РЅРµРІРѕР·РјРѕР¶РЅРѕ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°С‚СЊ РІ РІРѕР·РґСѓС€РЅРѕР№ РіРѕРЅРєРµ";
 		}
 		break;
 	case 2:
@@ -72,15 +72,15 @@ std::string RaceControl::vechicle_registration(unsigned number) {
 		{
 			if (Broom_created == false) {
 				Broom_created = true; vehicle_summ++;
-				return "Метла успешно зарегистрирована!\n";
+				return "РњРµС‚Р»Р° СѓСЃРїРµС€РЅРѕ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅР°!\n";
 			}
 			else {
-				return "Метла уже была зарегистрирована!\n";
+				return "РњРµС‚Р»Р° СѓР¶Рµ Р±С‹Р»Р° Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅР°!\n";
 			}
 		}
 		else
 		{
-			return "Метлу невозможно зарегистрировать в наземной гонке!\n";
+			return "РњРµС‚Р»Сѓ РЅРµРІРѕР·РјРѕР¶РЅРѕ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°С‚СЊ РІ РЅР°Р·РµРјРЅРѕР№ РіРѕРЅРєРµ!\n";
 		}
 
 		break;
@@ -89,98 +89,98 @@ std::string RaceControl::vechicle_registration(unsigned number) {
 		{
 			if (Camel_created == false) {
 				Camel_created = true; vehicle_summ++;
-				return "Верблюд успешно зарегистрирован!\n";
+				return "Р’РµСЂР±Р»СЋРґ СѓСЃРїРµС€РЅРѕ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅ!\n";
 			}
 			else {
-				return "Верблюд уже был зарегистрирован!\n";
+				return "Р’РµСЂР±Р»СЋРґ СѓР¶Рµ Р±С‹Р» Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅ!\n";
 			}
 		}
 		else {
-			return "Верблюда невозможно зарегистрировать в воздушной гонке";
+			return "Р’РµСЂР±Р»СЋРґР° РЅРµРІРѕР·РјРѕР¶РЅРѕ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°С‚СЊ РІ РІРѕР·РґСѓС€РЅРѕР№ РіРѕРЅРєРµ";
 		}
 		break;
 	case 4:
 		if (race_type == race_type::mix or race_type == race_type::ground) {
 			if (Centaur_created == false) {
 				Centaur_created = true; vehicle_summ++;
-				return "Кентавр успешно зарегистрирован!\n";
+				return "РљРµРЅС‚Р°РІСЂ СѓСЃРїРµС€РЅРѕ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅ!\n";
 			}
 			else {
-				return "Кентавр уже был зарегистрирован!\n";
+				return "РљРµРЅС‚Р°РІСЂ СѓР¶Рµ Р±С‹Р» Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅ!\n";
 			}
 		}
 		else {
-			return "Кентавра невозможно зарегистрировать в воздушной гонке";
+			return "РљРµРЅС‚Р°РІСЂР° РЅРµРІРѕР·РјРѕР¶РЅРѕ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°С‚СЊ РІ РІРѕР·РґСѓС€РЅРѕР№ РіРѕРЅРєРµ";
 		}
 	case 5:
 		if (race_type == race_type::mix or race_type == race_type::air)
 		{
 			if (Eagle_created == false) {
 				Eagle_created = true; vehicle_summ++;
-				return "Орёл успешно зарегистрирован!\n";
+				return "РћСЂС‘Р» СѓСЃРїРµС€РЅРѕ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅ!\n";
 			}
 			else {
-				return "Орёл уже был зарегистрирован!\n";
+				return "РћСЂС‘Р» СѓР¶Рµ Р±С‹Р» Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅ!\n";
 			}
 		}
 		else {
-			return "Орла невозможно зарегистрировать в наземной гонке!\n";
+			return "РћСЂР»Р° РЅРµРІРѕР·РјРѕР¶РЅРѕ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°С‚СЊ РІ РЅР°Р·РµРјРЅРѕР№ РіРѕРЅРєРµ!\n";
 		}
 	case 6:
 		if (race_type == race_type::mix or race_type == race_type::ground)
 		{
 			if (FastCamel_created == false) {
 				FastCamel_created = true; vehicle_summ++;
-				return "Верблюд-быстроход успешно зарегистрирован!\n";
+				return "Р’РµСЂР±Р»СЋРґ-Р±С‹СЃС‚СЂРѕС…РѕРґ СѓСЃРїРµС€РЅРѕ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅ!\n";
 			}
 			else {
-				return "Верблюд-быстроход уже был зарегистрирован!\n";
+				return "Р’РµСЂР±Р»СЋРґ-Р±С‹СЃС‚СЂРѕС…РѕРґ СѓР¶Рµ Р±С‹Р» Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅ!\n";
 			}
 		}
 		else {
-			return "Верблюд-быстроход не может быть зарегистрирован в воздушной гонке";
+			return "Р’РµСЂР±Р»СЋРґ-Р±С‹СЃС‚СЂРѕС…РѕРґ РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅ РІ РІРѕР·РґСѓС€РЅРѕР№ РіРѕРЅРєРµ";
 		}
 	case 7:
 		if (race_type == race_type::mix or race_type == race_type::air)
 		{
 			if (Carpet_created == false) {
 				Carpet_created = true; vehicle_summ++;
-				return "Ковёр-самолёт успешно зарегистрирован!\n";
+				return "РљРѕРІС‘СЂ-СЃР°РјРѕР»С‘С‚ СѓСЃРїРµС€РЅРѕ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅ!\n";
 			}
 			else {
-				return "Ковёр-самолёт уже был зарегистрирован!\n";
+				return "РљРѕРІС‘СЂ-СЃР°РјРѕР»С‘С‚ СѓР¶Рµ Р±С‹Р» Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅ!\n";
 			}
 		}
 		else {
-			return "Ковер-самолёт не может быть зарегистрирован в воздушной гонке";
+			return "РљРѕРІРµСЂ-СЃР°РјРѕР»С‘С‚ РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅ РІ РІРѕР·РґСѓС€РЅРѕР№ РіРѕРЅРєРµ";
 		}
 		break;
 	default:
-		return "Некорректный выбор";
+		return "РќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ РІС‹Р±РѕСЂ";
 	}
 }
 std::string RaceControl::get_race_status() {
 	std::stringstream ss;
 	if (vehicle_summ < 2) {
-		ss << "В гонке должно быть зарегистрированно не менее двух учатников\n";
+		ss << "Р’ РіРѕРЅРєРµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅРЅРѕ РЅРµ РјРµРЅРµРµ РґРІСѓС… СѓС‡Р°С‚РЅРёРєРѕРІ\n";
 	}
 	switch (race_type)
 	{
 	case race_type::ground:
-		ss << "Гонка для наземного транспорта. ";
+		ss << "Р“РѕРЅРєР° РґР»СЏ РЅР°Р·РµРјРЅРѕРіРѕ С‚СЂР°РЅСЃРїРѕСЂС‚Р°. ";
 		break;
 	case race_type::air:
-		ss << "Гонка для воздушного транспорта. ";
+		ss << "Р“РѕРЅРєР° РґР»СЏ РІРѕР·РґСѓС€РЅРѕРіРѕ С‚СЂР°РЅСЃРїРѕСЂС‚Р°. ";
 		break;
 	case race_type::mix:
-		ss << "Гонка для наземного и воздушного транспорта. ";
+		ss << "Р“РѕРЅРєР° РґР»СЏ РЅР°Р·РµРјРЅРѕРіРѕ Рё РІРѕР·РґСѓС€РЅРѕРіРѕ С‚СЂР°РЅСЃРїРѕСЂС‚Р°. ";
 		break;
 	default:
-		ss << "Гонка неопределена! ";
+		ss << "Р“РѕРЅРєР° РЅРµРѕРїСЂРµРґРµР»РµРЅР°! ";
 		break;
 	}
-	ss << "Расстояние: " << range << "\n";
-	ss << "Зарегистрированные транспортные средства: ";
+	ss << "Р Р°СЃСЃС‚РѕСЏРЅРёРµ: " << range << "\n";
+	ss << "Р—Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅРЅС‹Рµ С‚СЂР°РЅСЃРїРѕСЂС‚РЅС‹Рµ СЃСЂРµРґСЃС‚РІР°: ";
 	if (Camel_created == true) {
 		ss << Camel_veh.get_name() << " ";
 	}
@@ -210,44 +210,44 @@ std::string RaceControl::get_results() {
 	Vehicle* vehicle_arr = new Vehicle[vehicle_summ];
 	unsigned iter = 0;
 	if (Camel_created == true) {
-		//ss << Camel_veh.get_name() << ". Результат: " << Camel_veh.get_time(range) << "\n";
+		//ss << Camel_veh.get_name() << ". Р РµР·СѓР»СЊС‚Р°С‚: " << Camel_veh.get_time(range) << "\n";
 		Camel_veh.calc_time(range);
 		vehicle_arr[iter] = Camel_veh; iter++;
 	}
 	if (Broom_created == true) {
-		//ss << Broom_veh.get_name() << ". Результат: " << Broom_veh.get_time(range) << "\n";
+		//ss << Broom_veh.get_name() << ". Р РµР·СѓР»СЊС‚Р°С‚: " << Broom_veh.get_time(range) << "\n";
 		Broom_veh.calc_time(range);
 		vehicle_arr[iter] = Broom_veh; iter++;
 	}
 	if (Boots_created == true) {
-		//ss << Boots_veh.get_name() << ". Результат: " << Boots_veh.get_time(range) << "\n";
+		//ss << Boots_veh.get_name() << ". Р РµР·СѓР»СЊС‚Р°С‚: " << Boots_veh.get_time(range) << "\n";
 		Boots_veh.calc_time(range);
 		vehicle_arr[iter] = Boots_veh; iter++;
 	}
 	if (FastCamel_created == true) {
-		//ss << FastCamel_veh.get_name() << ". Результат: " << FastCamel_veh.get_time(range) << "\n";
+		//ss << FastCamel_veh.get_name() << ". Р РµР·СѓР»СЊС‚Р°С‚: " << FastCamel_veh.get_time(range) << "\n";
 		FastCamel_veh.calc_time(range);
 		vehicle_arr[iter] = FastCamel_veh; iter++;
 	}
 	if (Centaur_created == true) {
-		//ss << Centaur_veh.get_name() << ". Результат: " << Centaur_veh.get_time(range) << "\n";
+		//ss << Centaur_veh.get_name() << ". Р РµР·СѓР»СЊС‚Р°С‚: " << Centaur_veh.get_time(range) << "\n";
 		Centaur_veh.calc_time(range);
 		vehicle_arr[iter] = Centaur_veh; iter++;
 	}
 	if (Carpet_created == true) {
-		//ss << Carpet_veh.get_name() << ". Результат: " << Carpet_veh.get_time(range) << "\n";
+		//ss << Carpet_veh.get_name() << ". Р РµР·СѓР»СЊС‚Р°С‚: " << Carpet_veh.get_time(range) << "\n";
 		Carpet_veh.calc_time(range);
 		vehicle_arr[iter] = Carpet_veh; iter++;
 	}
 	if (Eagle_created == true) {
-		//ss << Eagle_veh.get_name() << ". Результат: " << Eagle_veh.get_time(range) << "\n";
+		//ss << Eagle_veh.get_name() << ". Р РµР·СѓР»СЊС‚Р°С‚: " << Eagle_veh.get_time(range) << "\n";
 		Eagle_veh.calc_time(range);
 		vehicle_arr[iter] = Eagle_veh;
 	}
 	ss << "\n";
 	sort_veh(vehicle_arr);
 	for (unsigned iter = 0; iter < vehicle_summ; iter++) {
-		ss << iter + 1 << ". " << vehicle_arr[iter].get_name() << ". Результат: " << vehicle_arr[iter].get_time() << "\n";
+		ss << iter + 1 << ". " << vehicle_arr[iter].get_name() << ". Р РµР·СѓР»СЊС‚Р°С‚: " << vehicle_arr[iter].get_time() << "\n";
 	}
 	return ss.str();
 }

@@ -1,3 +1,5 @@
+Module 2/RaceProject/RaceProject_Cmake
+Module 2/RaceProject/RaceProject — копия
 Module 2/Task_*_*/*/x64/Debug/*.txt
 Module 2/Task_**_1/.vs
 Module 2/Task_**_*/out
@@ -70,3 +72,4 @@ Module 2/Task_11_1/GreetClient/x64/Debug/GreetClient.vcxproj.FileListAbsolute.tx
 Module 2/Task_11_2/LeaverDynamiclibrary/x64/Debug/LeaverDynamiclibrary.vcxproj.FileListAbsolute.txt
 *.sqlite
 *.db-shm
+*.vcxproj

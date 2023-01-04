@@ -1,6 +1,6 @@
-#include <string.h>
+п»ї#include <string.h>
 #include "FastCamel.h"
-FastCamel::FastCamel() : Vehicle(true, "Верблюд-быстроход", 40, 10, 5, 6.5, 8) {}
+FastCamel::FastCamel() : Vehicle(true, "Р’РµСЂР±Р»СЋРґ-Р±С‹СЃС‚СЂРѕС…РѕРґ", 40, 10, 5, 6.5, 8) {}
 
 void FastCamel::calc_time(double range) {
 	time = range / speed;

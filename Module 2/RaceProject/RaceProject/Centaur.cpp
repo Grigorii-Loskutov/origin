@@ -1,6 +1,6 @@
-#include <string.h>
+ï»¿#include <string.h>
 #include "Centaur.h"
-Centaur::Centaur() : Vehicle(true, "Êåíòàâğ", 15, 8, 2, 0, 0) {}
+Centaur::Centaur() : Vehicle(true, "ĞšĞµĞ½Ñ‚Ğ°Ğ²Ñ€", 15, 8, 2, 0, 0) {}
 
 void Centaur::calc_time(double range) {
 	time = range / speed;

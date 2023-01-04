@@ -1,6 +1,6 @@
-#include <string.h>
+ο»Ώ#include <string.h>
 #include "Camel.h"
-Camel::Camel() : Vehicle(true, "Βεπαλώδ", 10, 30, 5, 8, 0) {}
+Camel::Camel() : Vehicle(true, "Π’ΠµΡ€Π±Π»ΡΠ΄", 10, 30, 5, 8, 0) {}
 
 void Camel::calc_time(double range) {
 	time = range / speed;

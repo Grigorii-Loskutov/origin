@@ -1,4 +1,4 @@
-#include "Vehicle.h"
+п»ї#include "Vehicle.h"
 Vehicle::Vehicle(bool ground, std::string name, double speed, double run_time, double rest_time1, double rest_time2, double rest_time3) {
 	this->ground = ground;
 	this->name = name;
@@ -14,7 +14,7 @@ Vehicle::Vehicle() {
 	this->speed = 1;
 }
 void Vehicle::calc_time(double range) {
-	time = range / speed; //Что возвращать для базового класса?
+	time = range / speed; //Р§С‚Рѕ РІРѕР·РІСЂР°С‰Р°С‚СЊ РґР»СЏ Р±Р°Р·РѕРІРѕРіРѕ РєР»Р°СЃСЃР°?
 }
 std::string Vehicle::get_name() {
 	return name;

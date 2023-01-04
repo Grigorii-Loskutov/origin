@@ -1,6 +1,6 @@
-#include <string.h>
+п»ї#include <string.h>
 #include "Carpet.h"
-Carpet::Carpet() : Vehicle(false, "Ковёр-самолёт", 10, 0, 0, 0, 0) {}
+Carpet::Carpet() : Vehicle(false, "РљРѕРІС‘СЂ-СЃР°РјРѕР»С‘С‚", 10, 0, 0, 0, 0) {}
 
 void Carpet::calc_time(double range) {
 	time = range / speed;
