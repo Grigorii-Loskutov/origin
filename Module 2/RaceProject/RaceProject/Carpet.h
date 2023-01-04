@@ -6,5 +6,5 @@
 class Carpet :public Vehicle {
 public:
 	Carpet();
-	virtual double get_time(double range) override;
+	virtual void calc_time(double range) override;
 };

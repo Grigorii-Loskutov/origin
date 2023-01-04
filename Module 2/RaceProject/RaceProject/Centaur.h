@@ -5,5 +5,5 @@
 class Centaur :public Vehicle {
 public:
 	Centaur();
-	virtual double get_time(double range) override;
+	virtual void calc_time(double range) override;
 };

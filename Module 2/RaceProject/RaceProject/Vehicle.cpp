@@ -13,9 +13,12 @@ Vehicle::Vehicle() {
 	this->ground = true;
 	this->speed = 1;
 }
-double Vehicle::get_time(double time) {
-	return range / time; //Что возвращать для базового класса?
+void Vehicle::calc_time(double range) {
+	time = range / speed; //Что возвращать для базового класса?
 }
 std::string Vehicle::get_name() {
 	return name;
+}
+double Vehicle::get_time() {
+	return time;
 }

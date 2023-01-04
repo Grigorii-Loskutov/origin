@@ -2,8 +2,7 @@
 #include "FastCamel.h"
 FastCamel::FastCamel() : Vehicle(true, "Верблюд-быстроход", 40, 10, 5, 6.5, 8) {}
 
-double FastCamel::get_time(double range) {
-	double time = 0;
+void FastCamel::calc_time(double range) {
 	time = range / speed;
 	double temp1 = time / run_time;
 	double temp2 = static_cast<double>(static_cast<int>(temp1));
@@ -24,5 +23,4 @@ double FastCamel::get_time(double range) {
 		time = time + rest_time1 + rest_time2 + (rest_number - 2) * rest_time3;
 	}
 	else { nullptr; }
-	return time;
 }

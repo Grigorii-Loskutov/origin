@@ -2,8 +2,7 @@
 #include "Camel.h"
 Camel::Camel() : Vehicle(true, "Верблюд", 10, 30, 5, 8, 0) {}
 
-double Camel::get_time(double range) {
-	double time = 0;
+void Camel::calc_time(double range) {
 	time = range / speed;
 	double temp1 = time / run_time;
 	double temp2 = static_cast<double>(static_cast<int>(temp1));
@@ -20,5 +19,4 @@ double Camel::get_time(double range) {
 	else if (rest_number > 1) {
 		time = time + rest_time1 + (rest_number - 1) * rest_time2;
 	}
-	return time;
 }

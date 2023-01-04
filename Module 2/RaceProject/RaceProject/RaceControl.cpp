@@ -211,36 +211,43 @@ std::string RaceControl::get_results() {
 	unsigned iter = 0;
 	if (Camel_created == true) {
 		//ss << Camel_veh.get_name() << ". Результат: " << Camel_veh.get_time(range) << "\n";
+		Camel_veh.calc_time(range);
 		vehicle_arr[iter] = Camel_veh; iter++;
 	}
 	if (Broom_created == true) {
 		//ss << Broom_veh.get_name() << ". Результат: " << Broom_veh.get_time(range) << "\n";
+		Broom_veh.calc_time(range);
 		vehicle_arr[iter] = Broom_veh; iter++;
 	}
 	if (Boots_created == true) {
 		//ss << Boots_veh.get_name() << ". Результат: " << Boots_veh.get_time(range) << "\n";
+		Boots_veh.calc_time(range);
 		vehicle_arr[iter] = Boots_veh; iter++;
 	}
 	if (FastCamel_created == true) {
 		//ss << FastCamel_veh.get_name() << ". Результат: " << FastCamel_veh.get_time(range) << "\n";
+		FastCamel_veh.calc_time(range);
 		vehicle_arr[iter] = FastCamel_veh; iter++;
 	}
 	if (Centaur_created == true) {
 		//ss << Centaur_veh.get_name() << ". Результат: " << Centaur_veh.get_time(range) << "\n";
+		Centaur_veh.calc_time(range);
 		vehicle_arr[iter] = Centaur_veh; iter++;
 	}
 	if (Carpet_created == true) {
 		//ss << Carpet_veh.get_name() << ". Результат: " << Carpet_veh.get_time(range) << "\n";
+		Carpet_veh.calc_time(range);
 		vehicle_arr[iter] = Carpet_veh; iter++;
 	}
 	if (Eagle_created == true) {
 		//ss << Eagle_veh.get_name() << ". Результат: " << Eagle_veh.get_time(range) << "\n";
+		Eagle_veh.calc_time(range);
 		vehicle_arr[iter] = Eagle_veh;
 	}
 	ss << "\n";
 	sort_veh(vehicle_arr);
 	for (unsigned iter = 0; iter < vehicle_summ; iter++) {
-		ss << iter + 1 << ". " << vehicle_arr[iter].get_name() << ". Результат: " << vehicle_arr[iter].get_time(range) << "\n";
+		ss << iter + 1 << ". " << vehicle_arr[iter].get_name() << ". Результат: " << vehicle_arr[iter].get_time() << "\n";
 	}
 	return ss.str();
 }
@@ -253,7 +260,7 @@ void RaceControl::sort_veh(Vehicle* vehicle_arr) {
 		swapped = false;
 		for (unsigned iter = 1; iter < vehicle_summ; iter++)
 		{
-			if (vehicle_arr[iter - 1].get_time(range) > vehicle_arr[iter].get_time(range))
+			if (vehicle_arr[iter - 1].get_time() > vehicle_arr[iter].get_time())
 			{
 				Vehicle temp = vehicle_arr[iter - 1];
 				vehicle_arr[iter - 1] = vehicle_arr[iter];

@@ -5,5 +5,5 @@
 class Broom :public Vehicle {
 public:
 	Broom();
-	virtual double get_time(double range) override;
+	virtual void calc_time(double range) override;
 };

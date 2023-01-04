@@ -5,5 +5,5 @@
 class FastCamel :public Vehicle {
 public:
 	FastCamel();
-	virtual double get_time(double range) override;
+	virtual void calc_time(double range) override;
 };

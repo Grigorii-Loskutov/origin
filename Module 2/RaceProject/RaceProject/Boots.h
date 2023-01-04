@@ -5,5 +5,5 @@
 class Boots :public Vehicle {
 public:
 	Boots();
-	virtual double get_time(double range) override;
+	virtual void calc_time(double range) override;
 };

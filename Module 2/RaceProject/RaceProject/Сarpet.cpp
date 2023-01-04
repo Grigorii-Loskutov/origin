@@ -2,8 +2,7 @@
 #include "Carpet.h"
 Carpet::Carpet() : Vehicle(false, "Ковёр-самолёт", 10, 0, 0, 0, 0) {}
 
-double Carpet::get_time(double range) {
-	double time = 0;
+void Carpet::calc_time(double range) {
 	time = range / speed;
 	if (range < 1000) {
 		nullptr;
@@ -17,5 +16,4 @@ double Carpet::get_time(double range) {
 	else {
 		time = time * 0.95;
 	}
-	return time;
 }

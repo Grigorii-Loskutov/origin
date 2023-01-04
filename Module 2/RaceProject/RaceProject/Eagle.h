@@ -5,5 +5,5 @@
 class Eagle :public Vehicle {
 public:
 	Eagle();
-	virtual double get_time(double range) override;
+	virtual void calc_time(double range) override;
 };
