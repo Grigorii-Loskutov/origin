@@ -4,14 +4,14 @@
 #include <windows.h>
 
 #include "RaceControl.h"
-#include "Vehicle.h"
-#include "Camel.h"
-#include "FastCamel.h"
-#include "Centaur.h"
-#include "Boots.h"
-#include "Carpet.h"
-#include "Eagle.h"
-#include "Broom.h"
+//#include "Vehicle.h"
+//#include "Camel.h"
+//#include "FastCamel.h"
+//#include "Centaur.h"
+//#include "Boots.h"
+//#include "Carpet.h"
+//#include "Eagle.h"
+//#include "Broom.h"
 
 enum class states {
 	race_create,

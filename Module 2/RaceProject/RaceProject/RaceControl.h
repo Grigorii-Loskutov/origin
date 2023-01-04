@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -11,6 +11,12 @@
 #include "Carpet.h"
 #include "Eagle.h"
 #include "Broom.h"
+
+#ifdef RACECONTROLDYNAMICLIBRARY_EXPORTS
+#define RACECONTROL_API __declspec(dllexport)
+#else
+#define RACECONTROL_API __declspec(dllimport)
+#endif
 
 class RaceControl {
 private:
@@ -39,11 +45,11 @@ private:
 	void sort_veh(Vehicle* vehicle_arr);
 
 public:
-	RaceControl();
-	void set_race_type(unsigned number);
-	void set_range(double range);
-	std::string vechicle_registration(unsigned number);
-	std::string get_race_status();
-	std::string get_results();
-	unsigned get_vehicle_summ();
+	RACECONTROL_API RaceControl();
+	RACECONTROL_API void set_race_type(unsigned number);
+	RACECONTROL_API void set_range(double range);
+	RACECONTROL_API std::string vechicle_registration(unsigned number);
+	RACECONTROL_API std::string get_race_status();
+	RACECONTROL_API std::string get_results();
+	RACECONTROL_API unsigned get_vehicle_summ();
 };
