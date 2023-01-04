@@ -133,6 +133,7 @@
     <ClCompile Include="Centaur.cpp" />
     <ClCompile Include="Eagle.cpp" />
     <ClCompile Include="FastCamel.cpp" />
+    <ClCompile Include="RaceControl.cpp" />
     <ClCompile Include="RaceProject.cpp" />
     <ClCompile Include="Vehicle.cpp" />
     <ClCompile Include="Сarpet.cpp" />
@@ -144,6 +145,7 @@
     <ClInclude Include="Centaur.h" />
     <ClInclude Include="Eagle.h" />
     <ClInclude Include="FastCamel.h" />
+    <ClInclude Include="RaceControl.h" />
     <ClInclude Include="Vehicle.h" />
     <ClInclude Include="Carpet.h" />
   </ItemGroup>

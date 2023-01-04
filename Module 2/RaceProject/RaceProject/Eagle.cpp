@@ -1,6 +1,6 @@
 #include <string.h>
 #include "Eagle.h"
-Eagle::Eagle() : Vehicle(false, "Àð¸ë", 10, 0, 0, 0, 0) {}
+Eagle::Eagle() : Vehicle(false, "Îð¸ë", 10, 0, 0, 0, 0) {}
 
 double Eagle::get_time(double range) {
 	double time = 0;
