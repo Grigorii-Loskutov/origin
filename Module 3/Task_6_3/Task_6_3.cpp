@@ -54,7 +54,6 @@ int main()
 		char* char_arr_small_str = &small_str[0];
 		int length_big_str = big_str.length();
 		int length_small_str = small_str.length();
-		//std::cout << "Наивный хэш строки " << big_str << " = " << real_string_hash(char_arr_big_str, &length_big_str, &p, &n) << "\n";
 		int seach_result = find_substring_light_rabin_karp(char_arr_big_str, &length_big_str, char_arr_small_str, &length_small_str);
 		if (seach_result == -1) {
 			std::cout << "Подстрока '" << small_str << "' не найдена" << "\n";
