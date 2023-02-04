@@ -8,11 +8,9 @@
 
 unsigned arr_size = 0;
 std::string arr_str;
-void main(int argc, char** argv);
 
 void main(int argc, char** argv)
 {
-    std::cout << "Hello World!\n";
 	setlocale(LC_ALL, "Russian");
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
