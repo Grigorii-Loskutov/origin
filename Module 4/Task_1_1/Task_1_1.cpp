@@ -19,6 +19,5 @@ int main()
 	std::for_each(arr1.begin(), arr1.end(), [&iter](int& n) { if (0 == (iter + 1) % 2) { n *= 3; } iter++; });
 	std::cout << "\nВыходные данные: ";
 	std::for_each(arr1.begin(), arr1.end(), print);
-
 }
 
