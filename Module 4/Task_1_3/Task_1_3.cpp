@@ -8,25 +8,15 @@
 #include <functional>
 #include <windows.h>
 
-void sinus(double angel) {
-	std::cout << " sin: " << std::sin(3.1415926 * angel / 180);
-}
-
-void cosinus(double angel) {
-	std::cout << " cos: " << std::cos(3.1415926 * angel / 180);
-}
-
 int main()
 {
 	setlocale(LC_ALL, "Russian");
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 	std::vector<double> angles = { 0, 30, 45, 90 };
-	//[](double angel) {std::cout << "sin: " << std::sin(3.1415926 * angel / 180); };
-	//[](double angel) {std::cout << "cos: " << std::cos(3.1415926 * angel / 180); };
 	std::vector < std::function<void(double)>> functions;
-	functions.emplace_back(sinus);
-	functions.emplace_back(cosinus);
+	functions.emplace_back([](double angel) {std::cout << "sin: " << std::sin(3.1415926 * angel / 180); });
+	functions.emplace_back([](double angel) {std::cout << "cos: " << std::cos(3.1415926 * angel / 180); });
 	for (const auto& angle : angles) {
 		std::cout << angle << ": ";
 		for (const auto& function : functions)
