@@ -14,9 +14,9 @@ int main()
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 	std::vector<double> angles = { 0, 30, 45, 90 };
-	std::vector < std::function<void(double)>> functions;
-	functions.emplace_back([](double angel) {std::cout << "sin: " << std::sin(3.1415926 * angel / 180); });
-	functions.emplace_back([](double angel) {std::cout << "cos: " << std::cos(3.1415926 * angel / 180); });
+	std::vector < std::function<void(double)>> functions = { [](double angel) {std::cout << "sin: " << std::sin(3.1415926 * angel / 180); } ,[](double angel) {std::cout << "cos: " << std::cos(3.1415926 * angel / 180); } };
+	//functions.emplace_back([](double angel) {std::cout << "sin: " << std::sin(3.1415926 * angel / 180); });
+	//functions.emplace_back([](double angel) {std::cout << "cos: " << std::cos(3.1415926 * angel / 180); });
 	for (const auto& angle : angles) {
 		std::cout << angle << ": ";
 		for (const auto& function : functions)
