@@ -13,6 +13,8 @@ private:
 	int* arr;
 	int curent_index;
 public:
+	smart_array(const smart_array&) = delete;
+	smart_array& operator=(const smart_array&) = delete;
 	smart_array(int arr_size) {
 		this->N = arr_size;
 		this->arr = new int[N] {};
@@ -26,7 +28,7 @@ public:
 		this->curent_index++;
 	}
 	int get_element(int index) {
-		if ((index < 0) || (index > N - 1)) {
+		if ((index < 0) || (index > curent_index)) {
 			std::string buf = std::to_string(index);
 			throw std::runtime_error("index " + buf + " out of range");
 		}
