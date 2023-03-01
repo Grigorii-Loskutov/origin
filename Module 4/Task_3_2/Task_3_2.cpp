@@ -26,7 +26,7 @@ public:
 		this->curent_index++;
 	}
 	int get_element(int index) {
-		if ((index < 0) || (index > N - 1)) {
+		if ((index < 0) || (index > curent_index)) {
 			std::string buf = std::to_string(index);
 			throw std::runtime_error("index " + buf + " out of range");
 		}
@@ -41,12 +41,18 @@ public:
 	void arr_copy(smart_array &source_arr) { //передаём по ссылке, т.к. при передаче по значению происходит копирование и создаётся ещё один объект
 		this->N = source_arr.get_arr_size();
 		this->curent_index = source_arr.get_curent_index();
+		delete[] this->arr;
+		this->arr = new int[N] {};
 		for (int iter = 0; iter < N; iter++) {
 			this->arr[iter] = source_arr.get_element(iter);
 		}
 	}
 	~smart_array() {
 		delete[] this->arr;
+	}
+	smart_array& operator=(smart_array& copyFrom) {
+		smart_array::arr_copy(copyFrom);
+		return *this;
 	}
 };
 
@@ -66,7 +72,8 @@ int main(int argc, char** argv)
 		new_array.add_element(44);
 		new_array.add_element(34);
 	
-		arr.arr_copy(new_array);
+		//arr.arr_copy(new_array);
+		arr = new_array;
 		std::cout << arr.get_element(1) << std::endl;
 	}
 	catch (const std::exception& ex) {
