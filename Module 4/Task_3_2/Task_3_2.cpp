@@ -18,6 +18,15 @@ public:
 		this->arr = new int[N] {};
 		this->curent_index = 0;
 	}
+	smart_array(const smart_array& other) {
+		this->N = other.get_arr_size();
+		this->curent_index = other.get_curent_index();
+		delete[] this->arr;
+		this->arr = new int[N] {};
+		for (int iter = 0; iter < N; iter++) {
+			this->arr[iter] = other.get_element(iter);
+		}
+	}
 	void add_element(int element) {
 		if (this->curent_index > (N - 1)) {
 			throw std::runtime_error("maximum index reached");
@@ -67,6 +76,8 @@ int main(int argc, char** argv)
 	SetConsoleOutputCP(1251);
 	try {
 		smart_array arr(5);
+		smart_array arr2 = arr;
+		arr = arr;
 		arr.add_element(1);
 		arr.add_element(4);
 		arr.add_element(155);
