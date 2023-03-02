@@ -51,6 +51,9 @@ public:
 		delete[] this->arr;
 	}
 	smart_array& operator=(const smart_array& copyFrom) {
+		if (this == &copyFrom) {
+			return *this;
+		}
 		smart_array::arr_copy(copyFrom);
 		return *this;
 	}
