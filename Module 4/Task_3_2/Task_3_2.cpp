@@ -25,20 +25,20 @@ public:
 		arr[this->curent_index] = element;
 		this->curent_index++;
 	}
-	int get_element(int index) {
+	int get_element(int index) const {
 		if ((index < 0) || (index > curent_index)) {
 			std::string buf = std::to_string(index);
 			throw std::runtime_error("index " + buf + " out of range");
 		}
 		return arr[index];
 	}
-	int get_curent_index() {
+	int get_curent_index() const {
 		return this->curent_index;
 	}
-	int get_arr_size() {
+	int get_arr_size() const {
 		return N;
 	}
-	void arr_copy(smart_array &source_arr) { //передаём по ссылке, т.к. при передаче по значению происходит копирование и создаётся ещё один объект
+	void arr_copy(const smart_array &source_arr) { //передаём по ссылке, т.к. при передаче по значению происходит копирование и создаётся ещё один объект
 		this->N = source_arr.get_arr_size();
 		this->curent_index = source_arr.get_curent_index();
 		delete[] this->arr;
@@ -50,7 +50,7 @@ public:
 	~smart_array() {
 		delete[] this->arr;
 	}
-	smart_array& operator=(smart_array& copyFrom) {
+	smart_array& operator=(const smart_array& copyFrom) {
 		smart_array::arr_copy(copyFrom);
 		return *this;
 	}
