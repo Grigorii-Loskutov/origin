@@ -21,7 +21,6 @@ public:
 	smart_array(const smart_array& other) {
 		this->N = other.get_arr_size();
 		this->curent_index = other.get_curent_index();
-		delete[] this->arr;
 		this->arr = new int[N] {};
 		for (int iter = 0; iter < N; iter++) {
 			this->arr[iter] = other.get_element(iter);
