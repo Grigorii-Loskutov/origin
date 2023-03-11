@@ -5,12 +5,6 @@
 #include <windows.h>
 #include <vector>
 
-//template <class T>
-
-//T square(T num) {
-//	return num * num;
-//}
-
 template <class T>
 void square(T num) {
 	std::cout << "[IN]: " << num << "\n";
@@ -50,11 +44,5 @@ int main(int argc, char** argv)
 
 	square(int_num);
 	square(vec);
-
-	//std::cout << "Int IN: " << vec << "\n";
-	//std::cout << "Int OUT: " << square(&vec) << '\n';
-
-	/*std::cout << "Double IN: "<< double_num << "\n";
-	std::cout << "Double OUT: " << square(double_num) << '\n';*/
 }
 
