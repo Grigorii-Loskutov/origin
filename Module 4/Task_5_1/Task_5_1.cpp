@@ -7,24 +7,24 @@
 
 template <class T>
 void square(T num) {
-	std::cout << "[IN]: " << num << "\n";
-	std::cout << "[OUT]: " << num * num << "\n";
+	num = num * num;
 }
 
 
 template <class T>
-void square(const std::vector<T> &vec) {
+void square(std::vector<T> &vec) {
 	auto it = vec.begin();
-	std::cout << "[IN]: ";
 	while (it != vec.end()) {
-		std::cout << *it << " ";
+		*it = (*it) * (*it);
 		++it;
 	}
-	std::cout << "\n";
-	it = vec.begin();
-	std::cout << "[OUT]: ";
+}
+
+template <class T>
+void print(const std::vector<T>& vec) {
+	auto it = vec.begin();
 	while (it != vec.end()) {
-		std::cout << (*it) * (*it) << " ";
+		std::cout << *it << " ";
 		++it;
 	}
 	std::cout << "\n";
@@ -41,8 +41,14 @@ int main(int argc, char** argv)
 	double double_num = 12.2;
 
 	std::vector<int> vec { 1, 10, 7,-9, 4 };
-
+	std::cout << "[IN]: " << int_num << "\n";
 	square(int_num);
+	std::cout << "[OUT]: " << int_num << "\n";
+
+	std::cout << "[IN]: ";
+	print(vec);
 	square(vec);
+	std::cout << "[OUT]";
+	print(vec);
 }
 
