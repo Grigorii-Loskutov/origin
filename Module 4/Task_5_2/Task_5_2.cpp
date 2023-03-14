@@ -37,7 +37,7 @@ public:
 	}
 	class Proxy {
 	public:
-		Proxy(int* array) : array(array) {}
+		Proxy(T* array) : array(array) {}
 		~Proxy() = default;
 		T& operator[] (int index) {
 			return array[index];
@@ -70,7 +70,7 @@ int main()
 	setlocale(LC_ALL, "Russian");
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
-	auto test_table = table<int>(2,3);
+	auto test_table = table<double>(2,3);
 	auto a = test_table[1][1];
 	test_table[1][1] = 5;
 	std::cout << test_table[1][1] << "\n";
