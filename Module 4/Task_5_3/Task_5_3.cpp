@@ -7,18 +7,15 @@
 #include <windows.h>
 
 class summ_functor {
-private:
 	int counter;
 	int summ;
 public:
-	//summ_functor() : counter{0} {}
 	summ_functor() : summ{ 0 }, counter{ 0 } {}
-	void operator()(std::vector<int> vec) {
-		int iter = 0;
-		int summ_iter = 0;
-		std::for_each(vec.begin(), vec.end(), [&iter, &summ_iter](const int& n) { if (0 == n % 3) { iter++; summ_iter += n; }});
-		counter = iter;
-		summ = summ_iter;
+	void operator()(int num) {
+		if (0 == num % 3) {
+			counter++; std::cout << counter;
+			summ += num; std::cout << summ;
+		}
 	}
 	int get_sum() {
 		return summ;
@@ -35,7 +32,7 @@ int main(int argc, char** argv)
 	SetConsoleOutputCP(1251);
 	std::vector<int> vec{ 4, 1, 3, 6, 25, 54 };
 	auto sf = summ_functor();
-	sf(vec);
+	std::for_each(vec.begin(), vec.end(), sf);
 	std::cout << "[IN]: ";
 	auto print = [](const int& n) { std::cout << " " << n; };
 	std::for_each(vec.begin(), vec.end(), print);
