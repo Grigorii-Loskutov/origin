@@ -15,6 +15,7 @@ int main()
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 	std::string str = "Hello world!!";
+	std::cout << "[IN] :" << str << "\n";
 	std::map<char, int> keyAndMap;
 	for (const auto iter : str) {
 		keyAndMap[iter] += 1;
@@ -24,6 +25,7 @@ int main()
 	}
 	std::cout << "____________________\n";
 	//Честно подсмотренно на stackoverflow
+	std::cout << "[OUT]:\n";
 	std::set<std::pair<int, char>> s;
 	for (auto const& kv : keyAndMap) {
 		s.emplace(kv.second, kv.first);
@@ -31,11 +33,4 @@ int main()
 
 	auto print = [](auto& n) { std::cout << n.first << ": " << n.second << "\n"; };
 	std::for_each(s.rbegin(), s.rend(), print);
-
-	/*for (auto const& vk : s) {
-		std::cout << vk.first << ": " << vk.second << "\n";
-	}*/
-	
-
-	
 }
