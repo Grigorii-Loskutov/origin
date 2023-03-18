@@ -1,4 +1,4 @@
-﻿// Task_7_2.cpp : https://github.com/netology-code/cppl-homeworks/tree/main/08
+﻿// Task_7_2.cpp : https://github.com/netology-code/cppl-homeworks/tree/main/08/01
 // Домашнее задание к занятию «STL. Часть 2»
 
 #include <iostream>
