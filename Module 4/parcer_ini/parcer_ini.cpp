@@ -22,41 +22,43 @@ private:
         if (com_pos == 0) return "";
         e_pos = str_for_find.find(']');
         if (e_pos < 0) { return ""; }
-        return str_for_find.substr(b_pos + 1, e_pos - 1);
+        return str_for_find.substr(b_pos + 1, e_pos - b_pos - 1);
     }
     std::string var_finder(std::string str_for_find) {
         int com_pos = str_for_find.find(';');
         if (com_pos == 0) return "";
         int equal_pos = str_for_find.find('=');
         if (equal_pos < 0) { return ""; }
-        int b_pos{ 0 }, e_pos{ equal_pos };
+        int b_pos{ 0 };
         std::string::iterator IT = str_for_find.begin();
         while ((*IT == ' ') || (*IT == '    ')) {
             IT++; b_pos++;
         }
         //if (com_pos > -1 && com_pos < b_pos) return "";
-        e_pos = b_pos;
+        int symbol_num{ 1 };
         while ((*IT != ' ') && (*IT != '    ') && (*IT != '=')) {
             IT++;
-            e_pos++;
+            symbol_num++;
             if (*IT == ';') return "";
         }
-        return str_for_find.substr(b_pos, e_pos); //лучше получать индекс символа через итератор, но я не знаю как
+        return str_for_find.substr(b_pos, symbol_num); //лучше получать индекс символа через итератор, но я не знаю как
     }
     std::string var_value_finder(std::string str_for_find) {
         int com_pos = str_for_find.find(';');
         if (com_pos == 0) return "";
         int equal_pos = str_for_find.find('=');
         if (equal_pos < 0) { return ""; }
+        if (equal_pos == str_for_find.length() - 1) { return ""; }
         int b_pos = equal_pos + 1;
         std::string::iterator IT = str_for_find.begin() + b_pos;
         while ((*IT == ' ') || (*IT == '    ')) { IT++; b_pos++; }
-        int e_pos = b_pos;
-        while ((*IT != ' ') && (*IT != '    ') && (*IT != ';')) {
+        int symbol_num{ 1 };
+
+        while ((*IT != ' ') && (*IT != '    ') && (*IT != ';') && (IT < str_for_find.end() - 1)) {
             IT++;
-            e_pos++; 
+            symbol_num++;
         }
-        return str_for_find.substr(b_pos, e_pos);
+        return str_for_find.substr(b_pos, symbol_num);
     }
 public:
     ini_parcer(std::string file_path) {
@@ -86,5 +88,5 @@ int main(int argc, char** argv)
     setlocale(LC_ALL, "Russian");
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
-    ini_parcer test_parset("example2.ini");
+    ini_parcer test_parset("example.ini");
 }
