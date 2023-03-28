@@ -58,7 +58,7 @@ private:
             IT++;
             symbol_num++;
         }
-        return str_for_find.substr(b_pos, symbol_num);
+         return str_for_find.substr(b_pos, symbol_num);
     }
 public:
     ini_parcer(std::string file_path) {
