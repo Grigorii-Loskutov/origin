@@ -11,7 +11,8 @@
 class ini_parcer {
 private:
     //Пусть имя секции, имя переменной и значение переменной будут строкой
-    std::map<std::string, std::map<std::string,std::string>> Sections;  //Section <Section_name, <var_name,var_value>>
+    std::map<std::string, std::map<std::string, std::string>> Sections;  //Section <Section_name, <var_name,var_value>>
+    std::map<std::string, std::string> var_pair;
     std::map<std::string, std::map<std::string, std::string>>::iterator section_iterator; //итератор для секций
     std::map<std::string, std::string>::iterator var_iterator; //итератор для переменных внутри секции
     std::string section_finder(std::string str_for_find) {
@@ -35,7 +36,7 @@ private:
             IT++; b_pos++;
         }
         //if (com_pos > -1 && com_pos < b_pos) return "";
-        int symbol_num{ 1 };
+        int symbol_num{ 0 };
         while ((*IT != ' ') && (*IT != '    ') && (*IT != '=')) {
             IT++;
             symbol_num++;
@@ -64,19 +65,33 @@ public:
     ini_parcer(std::string file_path) {
         std::ifstream fin(file_path);
         std::string line;
+        std::string section = "";
+        std::string var = "";
+        std::string var_value = "";
         int line_number{ 0 };
         while (!(fin).eof()) {
             std::getline(fin, line);
             std::cout << line_number << ": ";
-            std::string tm_str = "";
-            tm_str = section_finder(line);
-            if (tm_str != "") { std::cout << tm_str << "\n";  }
-            tm_str = var_finder(line);
-            if (tm_str != "") { std::cout << tm_str << " "; }
-            tm_str = var_value_finder(line);
-            if (tm_str != "") { std::cout << tm_str; }
-            line_number++;
+            std::string tmp_str = "";
+            tmp_str = section_finder(line);
+            if (tmp_str != "") { 
+                section = tmp_str;
+                std::cout << section << "\n";
+            }
+            tmp_str = var_finder(line);
+            if (tmp_str != "") { 
+                var = tmp_str; 
+                std::cout << var << " "; }
+            tmp_str = var_value_finder(line);
+            if (tmp_str != "") { 
+                var_value = tmp_str; 
+                std::cout << var_value; 
+                var_pair[var] = var_value;
+                Sections[section] = var_pair;
+            }
+            //std::map<std::string, std::string>(var, var_value);
             std::cout << "\n";
+            line_number++;
         }
        
     }
