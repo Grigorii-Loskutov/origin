@@ -95,6 +95,14 @@ public:
         }
        
     }
+    std::string get_value(const std::string section_var) {
+        int dot_pos = section_var.find('.');
+        std::string section_out = section_var.substr(0, dot_pos);
+        std::string var_out = section_var.substr(dot_pos + 1, section_var.length() - 1 - dot_pos);
+        return Sections[section_out][var_out];
+        //std::pair<std::string, std::string> n{ Sections[section_out]};
+        //return Sections[var_pair[section_out]];
+    }
 };
 
 int main(int argc, char** argv)
@@ -103,5 +111,6 @@ int main(int argc, char** argv)
     setlocale(LC_ALL, "Russian");
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
-    ini_parcer test_parset("example.ini");
+    ini_parcer test_parser("example.ini");
+    std::cout << test_parser.get_value("Section1.var1");
 }
