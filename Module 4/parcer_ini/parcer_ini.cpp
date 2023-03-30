@@ -11,11 +11,9 @@
 class ini_parcer {
 private:
     //Пусть имя секции, имя переменной и значение переменной будут строкой
-    std::map<std::string, std::map<std::string, std::string>> Sections;  //Section <Section_name, <var_name,var_value>>
-    std::map<std::string, std::string> var_pair;
-    std::map<std::string, std::map<std::string, std::string>>::iterator section_iterator; //итератор для секций
-    std::map<std::string, std::string>::iterator var_iterator; //итератор для переменных внутри секции
-    std::string section_finder(std::string str_for_find) {
+    std::map<std::string, std::string> Sections;  //Section <Section_name, <var_name,var_value>>
+    //std::map<std::string, std::string> var_pair;
+        std::string section_finder(std::string str_for_find) {
         int b_pos{ 0 }, e_pos{ 0 };
         b_pos = str_for_find.find('[');
         int com_pos = str_for_find.find(';');
@@ -83,11 +81,10 @@ public:
                 var = tmp_str; 
                 std::cout << var << " "; }
             tmp_str = var_value_finder(line);
-            if (tmp_str != "") { 
+            if ((tmp_str != "") && (var != "") && (section != "")) {
                 var_value = tmp_str; 
                 std::cout << var_value; 
-                var_pair[var] = var_value;
-                Sections[section] = var_pair;
+                Sections[section + "." + var] = var_value;
             }
             //std::map<std::string, std::string>(var, var_value);
             std::cout << "\n";
@@ -95,13 +92,26 @@ public:
         }
        
     }
-    std::string get_value(const std::string section_var) {
-        int dot_pos = section_var.find('.');
+    template<typename T>
+    T get_value(const std::string section_var) {
+        static_assert(get_value(), "not implemented conversion");
+    }
+    template<>
+    int get_value(const std::string section_var) {
+        /*int dot_pos = section_var.find('.');
         std::string section_out = section_var.substr(0, dot_pos);
-        std::string var_out = section_var.substr(dot_pos + 1, section_var.length() - 1 - dot_pos);
-        return Sections[section_out][var_out];
+        std::string var_out = section_var.substr(dot_pos + 1, section_var.length() - 1 - dot_pos);*/
+        return std::stoi(Sections[section_var]);
         //std::pair<std::string, std::string> n{ Sections[section_out]};
         //return Sections[var_pair[section_out]];
+    }
+    template<>
+    double get_value(const std::string section_var) {
+        return std::stod(Sections[section_var]);
+    }
+    template<>
+    std::string get_value(const std::string section_var) {
+        return Sections[section_var];
     }
 };
 
@@ -112,5 +122,6 @@ int main(int argc, char** argv)
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
     ini_parcer test_parser("example.ini");
-    std::cout << test_parser.get_value("Section1.var1");
+    std::cout << test_parser.get_value<int>("Section1.var1");
+    std::cout << test_parser.get_value<std::string>("Section1.var2");
 }
