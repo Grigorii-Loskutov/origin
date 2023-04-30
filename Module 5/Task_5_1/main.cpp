@@ -1,4 +1,4 @@
-#include <iostream>
+п»ї#include <iostream>
 #include <pqxx/pqxx>
 #include <exception>
 #include <tuple>
@@ -41,7 +41,7 @@ public:
 		tx.exec(str_phone_add);
 		tx.commit();
 	}
-	//для удаления телефона не обязательно нужно знать ID клиента, т.к. телефон уникален
+	//РґР»СЏ СѓРґР°Р»РµРЅРёСЏ С‚РµР»РµС„РѕРЅР° РЅРµ РѕР±СЏР·Р°С‚РµР»СЊРЅРѕ РЅСѓР¶РЅРѕ Р·РЅР°С‚СЊ ID РєР»РёРµРЅС‚Р°, С‚.Рє. С‚РµР»РµС„РѕРЅ СѓРЅРёРєР°Р»РµРЅ
 	void 
 		phone_delete(const std::string phone_for_del) {
 		pqxx::work tx{ *c1 };
@@ -69,7 +69,7 @@ public:
 		tx.exec(str_client_delete);
 		tx.commit();
 	}
-	//в ощем случае данный метод может вернуть несколько ID. Желательно, чтобы тип возвращаемого значения был список, кортеж. Как это изящно сделать?
+	//РІ РѕС‰РµРј СЃР»СѓС‡Р°Рµ РґР°РЅРЅС‹Р№ РјРµС‚РѕРґ РјРѕР¶РµС‚ РІРµСЂРЅСѓС‚СЊ РЅРµСЃРєРѕР»СЊРєРѕ ID. Р–РµР»Р°С‚РµР»СЊРЅРѕ, С‡С‚РѕР±С‹ С‚РёРї РІРѕР·РІСЂР°С‰Р°РµРјРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ Р±С‹Р» СЃРїРёСЃРѕРє, РєРѕСЂС‚РµР¶. РљР°Рє СЌС‚Рѕ РёР·СЏС‰РЅРѕ СЃРґРµР»Р°С‚СЊ?
 	int get_clients_id(std::string find_name = "%", std::string find_surname = "%", std::string find_email = "%", std::string find_phone="%") {
 		pqxx::work tx{ *c1 };
 		std::string str_request_id = "SELECT clients.id from "
@@ -78,7 +78,7 @@ public:
 			"name LIKE '" + tx.esc(find_name) +"' AND "
 			"surname LIKE '" + tx.esc(find_surname) +"' AND "
 			"email LIKE '" + tx.esc(find_email) + "' "
-			//"phone LIKE '" + tx.esc(find_phone) + "' " //криво работает, если телефон ещё не ввели
+			//"phone LIKE '" + tx.esc(find_phone) + "' " //РєСЂРёРІРѕ СЂР°Р±РѕС‚Р°РµС‚, РµСЃР»Рё С‚РµР»РµС„РѕРЅ РµС‰С‘ РЅРµ РІРІРµР»Рё
 			"LIMIT 1";
 		return tx.query_value<int>(str_request_id);
 	}
@@ -117,19 +117,19 @@ int main()
 
 		clients_base.SetConnection(std::move(c));
 
-		//Демонстрация работы
+		//Р”РµРјРѕРЅСЃС‚СЂР°С†РёСЏ СЂР°Р±РѕС‚С‹
 		//---------------------------------------
 
-		//создадим таблицы
+		//СЃРѕР·РґР°РґРёРј С‚Р°Р±Р»РёС†С‹
 		clients_base.table_create(str_creation); 
 
-		//Добавим клиентов
+		//Р”РѕР±Р°РІРёРј РєР»РёРµРЅС‚РѕРІ
 		clients_base.client_add("Jora", "Ivanov", "jora_i@yandex.ru");
 		clients_base.client_add("Peter", "Sydorov", "peter_s@yandex.ru");
 		clients_base.client_add("Vasil", "Egorov", "vasil_e@yandex.ru");
 		clients_base.client_add("Gregory", "Loskutov", "greg_l@yandex.ru");
 
-		//Узнаем ID клинетов идобавим им телефоны
+		//РЈР·РЅР°РµРј ID РєР»РёРЅРµС‚РѕРІ РёРґРѕР±Р°РІРёРј РёРј С‚РµР»РµС„РѕРЅС‹
 		int client_id = 0;
 		client_id = clients_base.get_clients_id("Jora", "%", "%", "%");
 		clients_base.phone_add(client_id, "+79996990001");
@@ -145,19 +145,19 @@ int main()
 		client_id = clients_base.get_clients_id("%", "Loskutov", "greg_l@yandex.ru", "%");
 		clients_base.phone_add(client_id, "+79996990004");
 
-		//удалим телефон из базы
+		//СѓРґР°Р»РёРј С‚РµР»РµС„РѕРЅ РёР· Р±Р°Р·С‹
 		clients_base.phone_delete("+79996990011");
 
 
-		//удалим клиента из базы, узнав его ID
+		//СѓРґР°Р»РёРј РєР»РёРµРЅС‚Р° РёР· Р±Р°Р·С‹, СѓР·РЅР°РІ РµРіРѕ ID
 		client_id = clients_base.get_clients_id("%", "Loskutov", "%", "%");
 		clients_base.client_delete(client_id);
 
-		//заапдейтим Жору
+		//Р·Р°Р°РїРґРµР№С‚РёРј Р–РѕСЂСѓ
 		client_id = clients_base.get_clients_id("Jora", "%", "%", "%");
 		clients_base.client_update(client_id, "Jora", "Peterson", "peterson@yandex.ru");
 
-		//получим ID Жоры
+		//РїРѕР»СѓС‡РёРј ID Р–РѕСЂС‹
 		std::cout << clients_base.get_clients_id("Jora", "%", "%", "%");
 	}
 	catch (pqxx::sql_error e) {
