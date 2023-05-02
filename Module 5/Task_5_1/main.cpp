@@ -97,7 +97,7 @@ int main()
 			"port=5432 "
 			"dbname=clients "
 			"user=postgres "
-			"password=cfhvf810"
+			"password=PASSWORD"
 		};
 		const std::string str_creation = {
 			"CREATE TABLE IF NOT EXISTS clients ("
