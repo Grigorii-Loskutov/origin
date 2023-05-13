@@ -36,19 +36,19 @@ int main(int argc, char** argv)
 	setlocale(LC_ALL, "Russia");
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
-    std::vector<int> v1_1000 = random_vector(1000);
-    std::vector<int> v2_1000 = random_vector(1000);
-    std::vector<int> v1_10000 = random_vector(10000);
-    std::vector<int> v2_10000 = random_vector(10000);
-    std::vector<int> v1_100000 = random_vector(100000);
-    std::vector<int> v2_100000 = random_vector(100000);
-    std::vector<int> v1_1000000 = random_vector(1000000);
-    std::vector<int> v2_1000000 = random_vector(1000000);
+    //std::vector<int> v1_1000 = random_vector(1000);
+    //std::vector<int> v2_1000 = random_vector(1000);
+    //std::vector<int> v1_10000 = random_vector(10000);
+    //std::vector<int> v2_10000 = random_vector(10000);
+    //std::vector<int> v1_100000 = random_vector(100000);
+    //std::vector<int> v2_100000 = random_vector(100000);
+    //std::vector<int> v1_1000000 = random_vector(1000000);
+    //std::vector<int> v2_1000000 = random_vector(1000000);
     /*auto print = [](auto& n) { std::cout << n << "\n"; };
     std::for_each(v1_1000.begin(), v1_1000.end(), print);*/
     unsigned int CPU_number = std::thread::hardware_concurrency();
     std::cout << "Number of cores: " << CPU_number << std::endl;
-    std::vector<int> results;
+    /*std::vector<int> results;
     for (int num_threads = 1; num_threads <= CPU_number; num_threads *= 2) {
         auto start_time = std::chrono::high_resolution_clock::now();
 
@@ -61,5 +61,46 @@ int main(int argc, char** argv)
     }
     for (int i = 0; i < results.size(); i++) {
         std::cout << (i + 1) << "\t\t" << results[i] << std::endl;
+    }
+    int results_arr [4][5];*/
+    std::vector<std::vector<int>> results_2dim;
+    const int low = 1'000;
+    const int high = 1'000'000;
+    std::cout << "\t\t";
+    for (int range_iter = low; range_iter <= high; range_iter *= 10) {
+        std::vector<int> v1 = random_vector(range_iter);
+        std::vector<int> v2 = random_vector(range_iter);
+        std::cout << range_iter << "\t\t";
+        std::vector<int> results_1dim;
+        for (int num_threads = 1; num_threads <= CPU_number; num_threads *= 2) {
+            auto start_time = std::chrono::high_resolution_clock::now();
+
+            std::vector<int> c = add_vectors(v1, v2, num_threads);
+
+            auto end_time = std::chrono::high_resolution_clock::now();
+            double duration = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
+
+            results_1dim.push_back(duration);
+            //std::cout << range_iter << " " << num_threads << " " << duration << std::endl;
+            //system("pause");
+        }
+        results_2dim.push_back(results_1dim);
+    }
+    std::cout << std::endl;
+    std::vector<std::vector<int>> results_2dim_tr(results_2dim[0].size(), std::vector<int>(results_2dim.size()));
+    std::transform(results_2dim.begin(), results_2dim.end(), results_2dim_tr.begin(),
+        [](const std::vector<int>& row) {
+            return std::vector<int>(row.begin(), row.end());
+        });
+    int treads = 1;
+    for (int i = 0; i < results_2dim[0].size(); i++) {
+        std::cout << treads << " threads:\t";
+       /* auto print = [](auto& n) { std::cout << n << "\t\t"; };
+        std::for_each(results_2dim[i].begin(), results_2dim[i].end(), print);*/
+        for (int j = 0; j < results_2dim.size(); j++) {
+            std::cout << results_2dim[j][i] << "\t\t";
+        }
+        std::cout << std::endl;
+        treads *= 2;
     }
 }
