@@ -36,36 +36,11 @@ int main(int argc, char** argv)
 	setlocale(LC_ALL, "Russia");
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
-    //std::vector<int> v1_1000 = random_vector(1000);
-    //std::vector<int> v2_1000 = random_vector(1000);
-    //std::vector<int> v1_10000 = random_vector(10000);
-    //std::vector<int> v2_10000 = random_vector(10000);
-    //std::vector<int> v1_100000 = random_vector(100000);
-    //std::vector<int> v2_100000 = random_vector(100000);
-    //std::vector<int> v1_1000000 = random_vector(1000000);
-    //std::vector<int> v2_1000000 = random_vector(1000000);
-    /*auto print = [](auto& n) { std::cout << n << "\n"; };
-    std::for_each(v1_1000.begin(), v1_1000.end(), print);*/
     unsigned int CPU_number = std::thread::hardware_concurrency();
     std::cout << "Number of cores: " << CPU_number << std::endl;
-    /*std::vector<int> results;
-    for (int num_threads = 1; num_threads <= CPU_number; num_threads *= 2) {
-        auto start_time = std::chrono::high_resolution_clock::now();
-
-        std::vector<int> c = add_vectors(v1_1000000, v2_1000000, num_threads);
-
-        auto end_time = std::chrono::high_resolution_clock::now();
-        double duration = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
-
-        results.push_back(duration);
-    }
-    for (int i = 0; i < results.size(); i++) {
-        std::cout << (i + 1) << "\t\t" << results[i] << std::endl;
-    }
-    int results_arr [4][5];*/
     std::vector<std::vector<int>> results_2dim;
     const int low = 1'000;
-    const int high = 1'000'000;
+    const int high = 1'000'000'0;
     std::cout << "\t\t";
     for (int range_iter = low; range_iter <= high; range_iter *= 10) {
         std::vector<int> v1 = random_vector(range_iter);
@@ -81,8 +56,6 @@ int main(int argc, char** argv)
             double duration = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
 
             results_1dim.push_back(duration);
-            //std::cout << range_iter << " " << num_threads << " " << duration << std::endl;
-            //system("pause");
         }
         results_2dim.push_back(results_1dim);
     }
@@ -95,8 +68,6 @@ int main(int argc, char** argv)
     int treads = 1;
     for (int i = 0; i < results_2dim[0].size(); i++) {
         std::cout << treads << " threads:\t";
-       /* auto print = [](auto& n) { std::cout << n << "\t\t"; };
-        std::for_each(results_2dim[i].begin(), results_2dim[i].end(), print);*/
         for (int j = 0; j < results_2dim.size(); j++) {
             std::cout << results_2dim[j][i] << "\t\t";
         }
