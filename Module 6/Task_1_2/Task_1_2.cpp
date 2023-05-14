@@ -7,8 +7,8 @@
 #include <windows.h>
 #include <chrono>
 #include <thread>
-#include <omp.h>
 #include <mutex>
+
 std::mutex mtx;
 std::vector<int> random_vector(int size) {
     srand(time(nullptr));
@@ -18,18 +18,6 @@ std::vector<int> random_vector(int size) {
         rand_v.push_back(rand() % range);
     }
     return rand_v;
-}
-
-std::vector<int> add_vectors(const std::vector<int>& a, const std::vector<int>& b, int num_threads) {
-    int n = a.size();
-    std::vector<int> c(n);
-
-#pragma omp parallel for num_threads(num_threads)
-    for (int i = 0; i < n; i++) {
-        c[i] = a[i] + b[i];
-    }
-
-    return c;
 }
 
 void sum_vectors(const std::vector<int>& a, const std::vector<int>& b, std::vector<int>& result, int start, int end) {
