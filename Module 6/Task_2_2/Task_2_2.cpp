@@ -11,32 +11,30 @@
 using namespace std::chrono_literals;
 
 std::mutex mtx;
-void calc_simulator(double duration, int thread_num, std::vector<bool>& flag_refreh, std::vector<bool>& flag_finish) {
-	std::vector<char> bar {};
-	while (bar.size() < duration)
+void calc_simulator(int duration, int thread_num, std::vector<std::vector<char>>& bars, std::vector<bool>& flag_refresh, std::vector<bool>& flag_finish) {
+	bool refresh = true;
+	while (bars[thread_num].size() < duration)
 	{
-		bar.push_back('%');
+		bars[thread_num].push_back('%');
 		mtx.lock();
-		//if (thread_num == 0) { system("cls"); }
-		/*switch (color)
+		refresh = true;
+		for (auto iter : flag_refresh) {
+			refresh = refresh && iter;
+		}
+		if (refresh == true)
 		{
-		case 1: system("Color 09"); break;
-		case 2: system("Color 0A"); break;
-		case 3: system("Color 0B"); break;
-		case 4: system("Color 0C"); break;
-		case 5: system("Color 0D"); break;
-		case 6: system("Color 0E"); break;
-		case 7: system("Color 0F"); break;
-		case 8: system("Color 08"); break;
-		default:
-			break;
-		}*/
+			system("cls");
+			for (auto iter : flag_refresh) {
+				iter = false;
+			}
+		}
 		std::cout << thread_num << " " << "treadID:\t" << std::this_thread::get_id() << "\t";
 		auto print = [](auto& n) { std::cout << n; };
-		std::for_each(bar.begin(), bar.end(), print);
+		std::for_each(bars[thread_num].begin(), bars[thread_num].end(), print);
 		std::cout << std::endl;
-		flag_refreh[thread_num] = true;
+		flag_refresh[thread_num] = true;
 		mtx.unlock();
+
 		srand(time(nullptr));
 		int sleep = rand() % 1000;
 		std::this_thread::sleep_for(std::chrono::milliseconds(sleep));
@@ -44,21 +42,18 @@ void calc_simulator(double duration, int thread_num, std::vector<bool>& flag_ref
 	flag_finish[thread_num] = true;
 }
 
-void clear(std::vector<bool>& flag_refresh, std::vector<bool>& flag_finish) {
-	bool refresh = true;
-	bool finish = false;
-	//auto if_refresh = [&refresh](bool& n) {refresh = refresh && n; };
-	//std::for_each(flag.begin(), flag.end(), if_refresh);
+void megaPrint(std::vector<std::vector<char>>& bars, std::vector<bool>& flag_refresh, std::vector<bool>& flag_finish, int& treads_quantity) {
+	bool finish = flag_finish[0];
+
 	while(!finish)
 	{
-		//finish = true;
 		mtx.lock();
 		for (auto iter : flag_finish) {
 			finish = finish && iter;
 		}
+		bool refresh = true;
 		for (auto iter : flag_refresh) {
 			refresh = refresh && iter;
-			//std::cout << std::endl << "refresh";
 		}
 		if (refresh == true)
 		{
@@ -67,12 +62,19 @@ void clear(std::vector<bool>& flag_refresh, std::vector<bool>& flag_finish) {
 			for (auto iter : flag_refresh) {
 				iter = false;
 			}
+			for (int iter = 0; iter < treads_quantity; iter++)
+			{
+				std::cout << iter << " ";
+				auto print = [](auto& n) { std::cout << n; };
+				std::for_each(bars[iter].begin(), bars[iter].end(), print);
+				std::cout << std::endl;
+			}
 		}
 		mtx.unlock();
-		std::this_thread::sleep_for(500ms);
+		std::this_thread::sleep_for(10ms);
 	}
 	std::cout << std::endl << "finish";
-}
+ }
 
 int main(int argc, char** argv)
 {
@@ -85,24 +87,20 @@ int main(int argc, char** argv)
 	std::cin >> treads_quantity;
 	std::cout << "Введите количество итераций (1 итерация - 1с для одного потока): ";
 	std::cin >> calc_duration;
-	/*auto start_time = std::chrono::high_resolution_clock::now();
-	auto end_time = std::chrono::high_resolution_clock::now();
-	double duration = std::chrono::duration_cast<std::chrono::seconds>(end_time - start_time).count();*/
-	/*std::thread t1 (calc_simulator, calc_duration, treads_quantity);
-	t1.join();*/
 	std::vector<std::thread> threads;
 	std::vector<bool> flag_refresh;
 	std::vector<bool> flag_finish;
+	std::vector<std::vector<char>> bars;
 	
 	for (int i = 0; i < treads_quantity; ++i) {
 		flag_refresh.push_back(false);
 		flag_finish.push_back(false);
-		threads.emplace_back(calc_simulator, calc_duration, i, std::ref(flag_refresh), std::ref(flag_finish));
+		std::vector<char> bar;
+		bars.push_back(bar);
+		threads.emplace_back(calc_simulator, calc_duration, i, std::ref(bars), std::ref(flag_refresh), std::ref(flag_finish));
 	}
 	for (auto& thread : threads) {
 		thread.join();
 	}
-	std::thread refresh_tread(clear, std::ref(flag_refresh), std::ref(flag_finish));
-	refresh_tread.join();
 	return 0;
 }
