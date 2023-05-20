@@ -29,21 +29,20 @@ private:
 
 void swap(Data& a, Data& b) {
     // Вариант с использованием lock
-    /*std::lock(a.getMutex(), b.getMutex());
+    std::lock(a.getMutex(), b.getMutex());
     std::lock_guard<std::mutex> lockA(a.getMutex(), std::adopt_lock);
-    std::lock_guard<std::mutex> lockB(b.getMutex(), std::adopt_lock);*/
-
+    std::lock_guard<std::mutex> lockB(b.getMutex(), std::adopt_lock);
 
 
     // Вариант с использованием scoped_lock
-    std::scoped_lock lock(a.getMutex(), b.getMutex());
-    //std::swap(a.getData(), b.getData());
+    //std::scoped_lock lock(a.getMutex(), b.getMutex());
+   
 
     // Вариант с использованием unique_lock
-     /*std::unique_lock<std::mutex> lockA(a.getMutex(), std::defer_lock);
+    /* std::unique_lock<std::mutex> lockA(a.getMutex(), std::defer_lock);
      std::unique_lock<std::mutex> lockB(b.getMutex(), std::defer_lock);
      std::lock(lockA, lockB);*/
-     //std::swap(a.getData(), b.getData());
+     
 
      // Обмен данными
      int temp = a.getData();
