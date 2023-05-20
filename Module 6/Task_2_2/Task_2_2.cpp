@@ -13,8 +13,10 @@ using namespace std::chrono_literals;
 std::mutex mtx;
 void calc_simulator(int duration, int thread_num, std::vector<std::vector<char>>& bars, std::vector<bool>& flag_refresh, std::vector<bool>& flag_finish) {
 	bool refresh = true;
+	double elapsed_time = 0;
 	while (bars[thread_num].size() < duration)
 	{
+		auto start_time = std::chrono::high_resolution_clock::now();
 		bars[thread_num].push_back('%');
 		mtx.lock();
 		refresh = true;
@@ -31,13 +33,18 @@ void calc_simulator(int duration, int thread_num, std::vector<std::vector<char>>
 		std::cout << thread_num << " " << "treadID:\t" << std::this_thread::get_id() << "\t";
 		auto print = [](auto& n) { std::cout << n; };
 		std::for_each(bars[thread_num].begin(), bars[thread_num].end(), print);
-		std::cout << std::endl;
+		if (bars[thread_num].size() == duration)
+		{
+			std::cout << "\tElapsed Time (ms): " << elapsed_time;
+		}
 		flag_refresh[thread_num] = true;
+		std::cout << std::endl;
 		mtx.unlock();
-
 		srand(time(nullptr));
 		int sleep = rand() % 1000;
 		std::this_thread::sleep_for(std::chrono::milliseconds(sleep));
+		auto end_time = std::chrono::high_resolution_clock::now();
+		elapsed_time = elapsed_time + std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time).count();
 	}
 	flag_finish[thread_num] = true;
 }
