@@ -3,51 +3,63 @@
 
 #include <iostream>
 #include <vector>
+#include <string>
 #include <algorithm>
-#include <windows.h>
 #include <chrono>
 #include <thread>
 #include <mutex>
+#include <windows.h>
+
 using namespace std::chrono_literals;
 
+
+COORD getCursorPosition() {
+	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+	CONSOLE_SCREEN_BUFFER_INFO bufferInfo;
+	GetConsoleScreenBufferInfo(consoleHandle, &bufferInfo);
+	return bufferInfo.dwCursorPosition;
+}
+
+void setCursorPosition(int x, int y) {
+	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+	COORD position;
+	position.X = x;
+	position.Y = y;
+	SetConsoleCursorPosition(consoleHandle, position);
+}
+
 std::mutex mtx;
-void calc_simulator(int duration, int thread_num, std::vector<bool>& flag_refresh, std::vector<bool>& flag_finish) {
+void calc_simulator(int duration, int thread_num) {
 	bool refresh = true;
 	double elapsed_time = 0;
-	std::vector<char> bar;
-	while (bar.size() < duration)
+	int count = 0;
+	int line = thread_num + 2;
+	int col = 0;
+	mtx.lock();
+	setCursorPosition(col, line);
+	std::cout << thread_num << " " << "treadID:\t" << std::this_thread::get_id() << "\t";
+	col = getCursorPosition().X;
+	mtx.unlock();
+	while (count < duration)
 	{
 		auto start_time = std::chrono::high_resolution_clock::now();
-		bar.push_back('%');
 		mtx.lock();
-		refresh = true;
-		for (auto iter : flag_refresh) {
-			refresh = refresh && iter;
-		}
-		if (refresh == true)
-		{
-			system("cls");
-			for (auto iter : flag_refresh) {
-				iter = false;
-			}
-		}
-		std::cout << thread_num << " " << "treadID:\t" << std::this_thread::get_id() << "\t";
-		auto print = [](auto& n) { std::cout << n; };
-		std::for_each(bar.begin(), bar.end(), print);
-		if (bar.size() == duration)
+		setCursorPosition(col, line);
+		std::cout << "%";
+		if (count == duration - 1)
 		{
 			std::cout << "\tElapsed Time (ms): " << elapsed_time;
 		}
-		flag_refresh[thread_num] = true;
-		std::cout << std::endl;
+		col = getCursorPosition().X;
 		mtx.unlock();
 		srand(time(nullptr));
-		int sleep = rand() % 1000;
+		int sleep = (rand() % 100) * thread_num;
 		std::this_thread::sleep_for(std::chrono::milliseconds(sleep));
 		auto end_time = std::chrono::high_resolution_clock::now();
 		elapsed_time = elapsed_time + std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time).count();
+		count++;
 	}
-	flag_finish[thread_num] = true;
+
 }
 
 
@@ -64,17 +76,15 @@ int main(int argc, char** argv)
 	std::cout << "Введите количество итераций: ";
 	std::cin >> calc_duration;
 	std::vector<std::thread> threads;
-	std::vector<bool> flag_refresh;
-	std::vector<bool> flag_finish;
+
 	
 	for (int i = 0; i < treads_quantity; ++i) {
-		flag_refresh.push_back(false);
-		flag_finish.push_back(false);
 
-		threads.emplace_back(calc_simulator, calc_duration, i, std::ref(flag_refresh), std::ref(flag_finish));
+		threads.emplace_back(calc_simulator, calc_duration, i);
 	}
 	for (auto& thread : threads) {
 		thread.join();
 	}
+	setCursorPosition(0, 2 + treads_quantity);
 	return 0;
 }
