@@ -9,9 +9,20 @@
 #include <thread>
 #include <mutex>
 #include <windows.h>
+#include <random>
 
 using namespace std::chrono_literals;
 
+
+int randomNumber(int range) {
+	std::random_device rd; 
+	std::mt19937 gen(rd()); 
+	std::uniform_int_distribution<int> dist(0, range);  
+
+	int randomNumber = dist(gen);  
+
+	return randomNumber;
+}
 
 COORD getCursorPosition() {
 	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -52,8 +63,8 @@ void calc_simulator(int duration, int thread_num) {
 		}
 		col = getCursorPosition().X;
 		mtx.unlock();
-		srand(time(nullptr));
-		int sleep = (rand() % 100) * thread_num;
+		int sleep;
+		sleep = randomNumber(1000);
 		std::this_thread::sleep_for(std::chrono::milliseconds(sleep));
 		auto end_time = std::chrono::high_resolution_clock::now();
 		elapsed_time = elapsed_time + std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time).count();
