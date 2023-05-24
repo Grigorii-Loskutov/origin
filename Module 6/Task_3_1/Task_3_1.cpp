@@ -35,14 +35,11 @@ void print(const std::vector<T>& vec) {
 	std::cout << "\n";
 }
 
-//std::vector<int>::iterator findMin(std::promise<std::vector<int>>& unsortVector) {
-//
-//	
-//	std::vector<int>::iterator minimum = std::min_element(unsortVector.begin(), unsortVector.end());
-//
-//	// Устанавливаем результат в объект promise
-//	unsortVector.set_value(result);
-//}
+void findMin(std::vector<int>& data, std::promise<std::vector<int>::iterator>& promiseObj) {
+
+	std::vector<int>::iterator minimum = std::min_element(data.begin(), data.end());
+	promiseObj.set_value(minimum);
+}
 
 
 int main(int argc, char** argv)
@@ -52,16 +49,40 @@ int main(int argc, char** argv)
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 	//создадим вектор случайных значений
-	std::vector<int> unsortVector = randomNumber(100, 20);
+	std::vector<int> unsortVector = randomNumber(100, 30); //Для сортировки в одном потоке
+	std::vector<int> unsortVector_A = unsortVector; //Для сортировки с помощью promise
 	std::cout << "Unsorted random vector: "; print(unsortVector);
-	/*std::vector<int>::iterator minimum = std::min_element(unsortVector.begin(), unsortVector.end());
-	std::cout << *minimum;*/
-	std::vector<int> sortVector{};
+	std::vector<int> sortVector{}; //Для сортровки в одном потоке
+	std::vector<int> sortVector_A{}; //Для сортировки с помощью promise
+	//Сделаем сортировку в одном потоке
 	while (unsortVector.size() > 0) {
 		std::vector<int>::iterator minimum = std::min_element(unsortVector.begin(), unsortVector.end());
 		sortVector.push_back(*minimum);
 		unsortVector.erase(minimum);
 	}
-	std::cout << "Sorted vector: "; print(sortVector);
+	std::cout << "Sorted vector (1 trhread): "; print(sortVector);
+
+	//Сделаем сортировку с помощью асинхронных вызовов
+
+
+	while (unsortVector_A.size() > 0)
+	{
+		// Создаем promise для передачи результата
+		std::promise<std::vector<int>::iterator> promiseObj;
+
+		// Получаем future, связанный с promise
+		std::future<std::vector<int>::iterator> futureObj = promiseObj.get_future();
+
+		// Запускаем функцию asyncFunction в асинхронном режиме,
+	   // передавая вектор и promise по ссылке
+		std::thread t(findMin, std::ref(unsortVector_A), std::ref(promiseObj));
+		// Ждем завершения функции и получаем результат
+		std::vector<int>::iterator minimum = futureObj.get();
+		sortVector_A.push_back(*minimum);
+		unsortVector_A.erase(minimum);
+		t.join();
+	}
+	std::cout << "Sorted vector (promise trhread): "; print(sortVector_A);
+
 	return 0;
 }
