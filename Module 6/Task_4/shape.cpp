@@ -61,51 +61,49 @@ std::vector<double> Shape::get_Z() {
 
 
 
-Line::Line() :Line(1) {}
-Line::Line(double lenght) {
-	X.push_back(0); Y.push_back(0); Z.push_back(0);		 //вершина (0,0,0)
-	X.push_back(lenght); Y.push_back(0); Z.push_back(0); // вершина (length,0,0)
-	lenght = lenght;
-	width = 0;
-	hight = 0;
-	square = 0;
-	volume = 0;
-	surface_square = 0;
-	type = shapeType::Line;
+
+Shape Shape::Line(const double line_lenght) {
+	std::vector<double> X_Line; 
+	std::vector<double> Y_Line;
+	std::vector<double> Z_Line;
+
+	X_Line.push_back(0); Y_Line.push_back(0); Z_Line.push_back(0);		 //вершина (0,0,0)
+	X_Line.push_back(line_lenght); Y_Line.push_back(0); Z_Line.push_back(0); //вершина(length, 0, 0)
+
+	return Shape::Shape(X_Line, Y_Line, Z_Line, shapeType::Line);
 }
 
-Rectangle::Rectangle() :Rectangle(1, 1) {}
-Rectangle::Rectangle(double lenght, double width) {
-	X.push_back(0); Y.push_back(0); Z.push_back(0); //вершина (0,0,0)
-	X.push_back(lenght); Y.push_back(0); Z.push_back(0); //вершина (lenght,0,0)
-	X.push_back(lenght); Y.push_back(width); Z.push_back(0); //вершина (lenght,width,0)
-	X.push_back(0); Y.push_back(width); Z.push_back(0); //вершина (0,width,0)
-	lenght = lenght;
-	width = width;
-	hight = 0;
-	square = lenght * width;
-	volume = 0;
-	surface_square = 0;
-	type = shapeType::Rectangle;
-}
 
-Parallelepiped::Parallelepiped():Parallelepiped(1,1,1){}
-Parallelepiped::Parallelepiped(double lenght, double width, double hight) {
-
-	X.push_back(0); Y.push_back(0); Z.push_back(0); //вершина (0,0,0)
-	X.push_back(lenght); Y.push_back(0); Z.push_back(0); //вершина (lenght,0,0)
-	X.push_back(lenght); Y.push_back(width); Z.push_back(0); //вершина (lenght,width,0)
-	X.push_back(0); Y.push_back(width); Z.push_back(0); //вершина (0,width,0)
-
-	X.push_back(0); Y.push_back(0); Z.push_back(hight); //вершина (0,0,hight)
-	X.push_back(lenght); Y.push_back(0); Z.push_back(hight); //вершина (lenght,0,hight)
-	X.push_back(lenght); Y.push_back(width); Z.push_back(hight); //вершина (lenght,width,hight)
-	X.push_back(0); Y.push_back(width); Z.push_back(hight); //вершина (0,width,hight)
-	lenght = lenght;
-	width = width;
-	hight = hight;
-	square = 0;
-	volume = lenght * width * hight;
-	surface_square = lenght * width * 2 + width * hight * 2 + lenght * hight * 2;
-	type = shapeType::Parallelepiped;
-}
+//Shape Shape::Rectangle(double lenght, double width) {
+//	X.push_back(0); Y.push_back(0); Z.push_back(0); //вершина (0,0,0)
+//	X.push_back(lenght); Y.push_back(0); Z.push_back(0); //вершина (lenght,0,0)
+//	X.push_back(lenght); Y.push_back(width); Z.push_back(0); //вершина (lenght,width,0)
+//	X.push_back(0); Y.push_back(width); Z.push_back(0); //вершина (0,width,0)
+//	lenght = lenght;
+//	width = width;
+//	hight = 0;
+//	square = lenght * width;
+//	volume = 0;
+//	surface_square = 0;
+//	type = shapeType::Rectangle;
+//}
+//
+//Shape Shape::Parallelepiped(double lenght, double width, double hight) {
+//
+//	X.push_back(0); Y.push_back(0); Z.push_back(0); //вершина (0,0,0)
+//	X.push_back(lenght); Y.push_back(0); Z.push_back(0); //вершина (lenght,0,0)
+//	X.push_back(lenght); Y.push_back(width); Z.push_back(0); //вершина (lenght,width,0)
+//	X.push_back(0); Y.push_back(width); Z.push_back(0); //вершина (0,width,0)
+//
+//	X.push_back(0); Y.push_back(0); Z.push_back(hight); //вершина (0,0,hight)
+//	X.push_back(lenght); Y.push_back(0); Z.push_back(hight); //вершина (lenght,0,hight)
+//	X.push_back(lenght); Y.push_back(width); Z.push_back(hight); //вершина (lenght,width,hight)
+//	X.push_back(0); Y.push_back(width); Z.push_back(hight); //вершина (0,width,hight)
+//	lenght = lenght;
+//	width = width;
+//	hight = hight;
+//	square = 0;
+//	volume = lenght * width * hight;
+//	surface_square = lenght * width * 2 + width * hight * 2 + lenght * hight * 2;
+//	type = shapeType::Parallelepiped;
+//}

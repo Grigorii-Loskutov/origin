@@ -14,7 +14,7 @@ protected:
 	std::vector<double> Z;
 	double lenght;
 	double width;
-	double hight ;
+	double hight;
 	double volume;
 	double square;
 	double surface_square;
@@ -26,29 +26,8 @@ public:
 	std::vector<double> get_Y();
 	std::vector<double> get_Z();
 	shapeType get_type();
-};
 
-class Line : public Shape
-{
-public:
-	Line(double lenght);
-	Line();
-};
-
-class Rectangle : public Shape
-{
-protected:
-
-public:
-	Rectangle(double lenght, double width);
-	Rectangle();
-};
-
-class Parallelepiped : public Shape
-{
-protected:
-
-public:
-	Parallelepiped(double lenght, double width, double hight);
-	Parallelepiped();
+	Shape Line(double lenght);
+	/*Shape Rectangle(double lenght, double width);
+	Shape Parallelepiped(double lenght, double width, double hight);*/
 };
