@@ -1,24 +1,25 @@
 #include "transform.h"
 #include<vector>
 #include<algorithm>
+#include <iostream>
 
-transform::transform(const Shape& sh)
+transform::transform(Shape& sh)
 {
-	shape = sh;
+	shape = std::move(sh);
 }
-
 Shape transform::shift(double x, double y, double z)
 {
 	std::vector<double> X_for_Shift = shape.get_X();
 	std::vector<double> Y_for_Shift = shape.get_Y();
 	std::vector<double> Z_for_Shift = shape.get_Z();
-	for (auto iter : X_for_Shift) {
+	for (auto& iter : X_for_Shift) {
+		std::cout << iter << std::endl;
 		iter += x;
 	}
-	for (auto iter : Y_for_Shift) {
+	for (auto& iter : Y_for_Shift) {
 		iter += y;
 	}
-	for (auto iter : Z_for_Shift) {
+	for (auto& iter : Z_for_Shift) {
 		iter += z;
 	}
 	return Shape::Shape(X_for_Shift, Y_for_Shift, Z_for_Shift, shape.get_type());

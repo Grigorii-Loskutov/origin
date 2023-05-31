@@ -14,7 +14,11 @@ int main(int argc, char** argv)
 	Shape line(shapeType::Line, 9);
 	line.get_type();
 	transform transform_line(line);
-	Shape l2 = transform_line.shift(1, 1, 1);
-	Shape l3 = transform_line.scaleX(2);
+	line = transform_line.shift(1, 1, 1);
+	line = transform_line.scaleX(2);
+
+	Shape rectangle(shapeType::Rectangle, 3, 3);
+	transform transform_rec(rectangle);
+	rectangle = transform_rec.shift(1, 1, 1);
 	return 0;
 }

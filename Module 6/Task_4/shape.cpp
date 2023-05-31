@@ -50,6 +50,12 @@ Shape::Shape(std::vector<double> X, std::vector<double> Y, std::vector<double> Z
 }
 
 Shape::Shape(shapeType Line, double line_lenght) {
+	lenght = lenght;
+	width = 0;
+	hight = 0;
+	square = 0;
+	volume = 0;
+	surface_square = 0;
 	square = 0;
 	volume = 0;
 	surface_square = 0;
@@ -58,13 +64,20 @@ Shape::Shape(shapeType Line, double line_lenght) {
 	X.push_back(line_lenght); Y.push_back(0); Z.push_back(0); //вершина(length, 0, 0)
 }
 
-//Shape::Shape(shapeType Rectangle, double lenght, double width) {
-//
-//}
-//
-//Shape::Shape(shapeType Parallelepiped, double lenght, double width, double hight) {
-//
-//}
+Shape::Shape(shapeType Rectangle, double lenght, double width) {
+	X.push_back(0); Y.push_back(0); Z.push_back(0); //вершина (0,0,0)
+	X.push_back(lenght); Y.push_back(0); Z.push_back(0); //вершина (lenght,0,0)
+	X.push_back(lenght); Y.push_back(width); Z.push_back(0); //вершина (lenght,width,0)
+	X.push_back(0); Y.push_back(width); Z.push_back(0); //вершина (0,width,0)
+	lenght = lenght;
+	width = width;
+	hight = 0;
+	square = lenght * width;
+	volume = 0;
+	surface_square = 0;
+	type = shapeType::Rectangle;
+}
+
 
 shapeType Shape::get_type(){
 	return this->type;
@@ -84,30 +97,6 @@ std::vector<double> Shape::get_Z() {
 
 
 
-
-void Shape::Line(const double line_lenght) {
-	square = 0;
-	volume = 0;
-	surface_square = 0;
-	this->type = shapeType::Line;
-	X.push_back(0); Y.push_back(0); Z.push_back(0);		 //вершина (0,0,0)
-	X.push_back(line_lenght); Y.push_back(0); Z.push_back(0); //вершина(length, 0, 0)
-}
-
-
-//Shape Shape::Rectangle(double lenght, double width) {
-//	X.push_back(0); Y.push_back(0); Z.push_back(0); //вершина (0,0,0)
-//	X.push_back(lenght); Y.push_back(0); Z.push_back(0); //вершина (lenght,0,0)
-//	X.push_back(lenght); Y.push_back(width); Z.push_back(0); //вершина (lenght,width,0)
-//	X.push_back(0); Y.push_back(width); Z.push_back(0); //вершина (0,width,0)
-//	lenght = lenght;
-//	width = width;
-//	hight = 0;
-//	square = lenght * width;
-//	volume = 0;
-//	surface_square = 0;
-//	type = shapeType::Rectangle;
-//}
 //
 //Shape Shape::Parallelepiped(double lenght, double width, double hight) {
 //
