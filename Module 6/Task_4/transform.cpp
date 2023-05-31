@@ -4,7 +4,7 @@
 
 transform::transform(const Shape& sh)
 {
-	Shape shape=sh;
+	shape = sh;
 }
 
 Shape transform::shift(double x, double y, double z)

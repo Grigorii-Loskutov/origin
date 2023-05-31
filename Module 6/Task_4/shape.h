@@ -21,13 +21,16 @@ protected:
 	shapeType type;
 public:
 	Shape();
+	Shape(shapeType Line, double length);
+	Shape(shapeType Rectangle, double lenght, double width);
+	Shape(shapeType Parallelepiped, double lenght, double width, double hight);
 	Shape(std::vector<double> X, std::vector<double> Y, std::vector<double> Z, shapeType type);
 	std::vector<double> get_X();
 	std::vector<double> get_Y();
 	std::vector<double> get_Z();
 	shapeType get_type();
 
-	Shape Line(double lenght);
+	void Line(double lenght);
 	/*Shape Rectangle(double lenght, double width);
 	Shape Parallelepiped(double lenght, double width, double hight);*/
 };

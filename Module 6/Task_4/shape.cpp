@@ -2,7 +2,14 @@
 #include"shape.h"
 #include<cmath>
 Shape::Shape() {
-	Shape({ 0 }, { 0 }, { 0 }, shapeType::Point);
+	X = { 0 }; Y = { 0 }; Z = { 0 }; type = shapeType::Point;
+	square = 0;
+	volume = 0;
+	surface_square = 0;
+	lenght = 0;
+	width = 0;
+	hight = 0;
+
 }
 
 Shape::Shape(std::vector<double> X, std::vector<double> Y, std::vector<double> Z, shapeType type) {
@@ -40,8 +47,24 @@ Shape::Shape(std::vector<double> X, std::vector<double> Y, std::vector<double> Z
 	default:
 		break;
 	}
-
 }
+
+Shape::Shape(shapeType Line, double line_lenght) {
+	square = 0;
+	volume = 0;
+	surface_square = 0;
+	this->type = shapeType::Line;
+	X.push_back(0); Y.push_back(0); Z.push_back(0);		 //вершина (0,0,0)
+	X.push_back(line_lenght); Y.push_back(0); Z.push_back(0); //вершина(length, 0, 0)
+}
+
+//Shape::Shape(shapeType Rectangle, double lenght, double width) {
+//
+//}
+//
+//Shape::Shape(shapeType Parallelepiped, double lenght, double width, double hight) {
+//
+//}
 
 shapeType Shape::get_type(){
 	return this->type;
@@ -62,15 +85,13 @@ std::vector<double> Shape::get_Z() {
 
 
 
-Shape Shape::Line(const double line_lenght) {
-	std::vector<double> X_Line; 
-	std::vector<double> Y_Line;
-	std::vector<double> Z_Line;
-
-	X_Line.push_back(0); Y_Line.push_back(0); Z_Line.push_back(0);		 //вершина (0,0,0)
-	X_Line.push_back(line_lenght); Y_Line.push_back(0); Z_Line.push_back(0); //вершина(length, 0, 0)
-
-	return Shape::Shape(X_Line, Y_Line, Z_Line, shapeType::Line);
+void Shape::Line(const double line_lenght) {
+	square = 0;
+	volume = 0;
+	surface_square = 0;
+	this->type = shapeType::Line;
+	X.push_back(0); Y.push_back(0); Z.push_back(0);		 //вершина (0,0,0)
+	X.push_back(line_lenght); Y.push_back(0); Z.push_back(0); //вершина(length, 0, 0)
 }
 
 
