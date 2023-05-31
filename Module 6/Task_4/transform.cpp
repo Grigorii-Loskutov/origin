@@ -1,11 +1,11 @@
 #include "transform.h"
 #include<vector>
 #include<algorithm>
-#include <iostream>
 
-transform::transform(Shape& sh)
+
+transform::transform(const Shape& sh)
 {
-	shape = std::move(sh);
+	shape = sh;
 }
 Shape transform::shift(double x, double y, double z)
 {
@@ -13,7 +13,6 @@ Shape transform::shift(double x, double y, double z)
 	std::vector<double> Y_for_Shift = shape.get_Y();
 	std::vector<double> Z_for_Shift = shape.get_Z();
 	for (auto& iter : X_for_Shift) {
-		std::cout << iter << std::endl;
 		iter += x;
 	}
 	for (auto& iter : Y_for_Shift) {

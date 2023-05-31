@@ -79,6 +79,27 @@ Shape::Shape(shapeType Rectangle, double lenght, double width) {
 }
 
 
+Shape::Shape(shapeType Parallelepiped, double lenght, double width, double hight) {
+
+	X.push_back(0); Y.push_back(0); Z.push_back(0); //вершина (0,0,0)
+	X.push_back(lenght); Y.push_back(0); Z.push_back(0); //вершина (lenght,0,0)
+	X.push_back(lenght); Y.push_back(width); Z.push_back(0); //вершина (lenght,width,0)
+	X.push_back(0); Y.push_back(width); Z.push_back(0); //вершина (0,width,0)
+
+	X.push_back(0); Y.push_back(0); Z.push_back(hight); //вершина (0,0,hight)
+	X.push_back(lenght); Y.push_back(0); Z.push_back(hight); //вершина (lenght,0,hight)
+	X.push_back(lenght); Y.push_back(width); Z.push_back(hight); //вершина (lenght,width,hight)
+	X.push_back(0); Y.push_back(width); Z.push_back(hight); //вершина (0,width,hight)
+	lenght = lenght;
+	width = width;
+	hight = hight;
+	square = 0;
+	volume = lenght * width * hight;
+	surface_square = lenght * width * 2 + width * hight * 2 + lenght * hight * 2;
+	type = shapeType::Parallelepiped;
+}
+
+
 shapeType Shape::get_type(){
 	return this->type;
 }
@@ -94,26 +115,3 @@ std::vector<double> Shape::get_Y() {
 std::vector<double> Shape::get_Z() {
 	return this->Z;
 }
-
-
-
-//
-//Shape Shape::Parallelepiped(double lenght, double width, double hight) {
-//
-//	X.push_back(0); Y.push_back(0); Z.push_back(0); //вершина (0,0,0)
-//	X.push_back(lenght); Y.push_back(0); Z.push_back(0); //вершина (lenght,0,0)
-//	X.push_back(lenght); Y.push_back(width); Z.push_back(0); //вершина (lenght,width,0)
-//	X.push_back(0); Y.push_back(width); Z.push_back(0); //вершина (0,width,0)
-//
-//	X.push_back(0); Y.push_back(0); Z.push_back(hight); //вершина (0,0,hight)
-//	X.push_back(lenght); Y.push_back(0); Z.push_back(hight); //вершина (lenght,0,hight)
-//	X.push_back(lenght); Y.push_back(width); Z.push_back(hight); //вершина (lenght,width,hight)
-//	X.push_back(0); Y.push_back(width); Z.push_back(hight); //вершина (0,width,hight)
-//	lenght = lenght;
-//	width = width;
-//	hight = hight;
-//	square = 0;
-//	volume = lenght * width * hight;
-//	surface_square = lenght * width * 2 + width * hight * 2 + lenght * hight * 2;
-//	type = shapeType::Parallelepiped;
-//}

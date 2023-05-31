@@ -3,8 +3,8 @@
 class transform
 {
 public:
-	transform(Shape& sh);
-	~transform() {}
+	transform(const Shape& sh);
+	//~transform() {}
 	Shape shift(double x, double y, double z);
 	Shape scaleX(double a);
 	Shape scaleY(double d);
