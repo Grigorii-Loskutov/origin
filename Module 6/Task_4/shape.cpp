@@ -1,117 +1,196 @@
 #include<vector>
-#include"shape.h"
 #include<cmath>
-Shape::Shape() {
-	X = { 0 }; Y = { 0 }; Z = { 0 }; type = shapeType::Point;
-	square = 0;
-	volume = 0;
-	surface_square = 0;
-	lenght = 0;
-	width = 0;
-	hight = 0;
+#include<algorithm>
+#include"shape.h"
 
+
+Line::Line(double line_length) : length(line_length) {
+        type = ShapeType::LINE;
+        X.push_back(0); Y.push_back(0); Z.push_back(0);		 //вершина (0,0,0)
+        X.push_back(length); Y.push_back(0); Z.push_back(0); //вершина(length, 0, 0)
+ }
+
+double Line::getLength() const { return length; }
+double Line::getWidth() const { return 0.0; }
+double Line::getHeight() const { return 0.0; }
+double Line::getArea() const { return 0.0; }
+double Line::getSurfaceArea() const { return 0.0; }
+double Line::getVolume() const { return 0.0; }
+
+void Line::shift(double x, double y, double z) {
+    for (auto& iter : X) {
+	iter += x;
+}
+for (auto& iter : Y) {
+	iter += y;
+}
+for (auto& iter : Z) {
+	iter += z;
+}
+}
+void Line::scaleX(double scale)  {
+    auto scaleCoord = [scale](double& coord) { coord = coord * scale; };
+    std::for_each(X.begin(), X.end(), scaleCoord);
+}
+void Line::scaleY(double scale)  {
+    auto scaleCoord = [scale](double& coord) { coord = coord * scale; };
+    std::for_each(Y.begin(), Y.end(), scaleCoord);
+}   
+void Line::scaleZ(double scale)  {
+    auto scaleCoord = [scale](double& coord) { coord = coord * scale; };
+    std::for_each(Z.begin(), Z.end(), scaleCoord);
+}
+void Line::scale(double scale)  {
+    auto scaleCoord = [scale](double& coord) { coord = coord * scale; };
+    std::for_each(X.begin(), X.end(), scaleCoord);
+    std::for_each(Y.begin(), Y.end(), scaleCoord);
+    std::for_each(Z.begin(), Z.end(), scaleCoord);
+};
+
+Rectangle::Rectangle(double len, double wid) : length(len), width(wid) {
+    type = ShapeType::RECTANGLE;
+    X.push_back(0); Y.push_back(0); Z.push_back(0); //вершина (0,0,0)
+    X.push_back(length); Y.push_back(0); Z.push_back(0); //вершина (lenght,0,0)
+    X.push_back(length); Y.push_back(width); Z.push_back(0); //вершина (lenght,width,0)
+    X.push_back(0); Y.push_back(width); Z.push_back(0); //вершина (0,width,0)
+ }
+
+double Rectangle::getLength() const { return length; }
+double Rectangle::getWidth() const { return width; }
+double Rectangle::getHeight() const { return 0.0; }
+double Rectangle::getArea() const { return length * width; }
+double Rectangle::getSurfaceArea() const { return 0.0; }
+double Rectangle::getVolume() const { return 0.0; }
+
+void Rectangle::shift(double x, double y, double z) {
+    for (auto& iter : X) {
+        iter += x;
+    }
+    for (auto& iter : Y) {
+        iter += y;
+    }
+    for (auto& iter : Z) {
+        iter += z;
+    }
+}
+void Rectangle::scaleX(double scale) {
+    auto scaleCoord = [scale](double& coord) { coord = coord * scale; };
+    std::for_each(X.begin(), X.end(), scaleCoord);
+}
+void Rectangle::scaleY(double scale) {
+    auto scaleCoord = [scale](double& coord) { coord = coord * scale; };
+    std::for_each(Y.begin(), Y.end(), scaleCoord);
+}
+void Rectangle::scaleZ(double scale) {
+    auto scaleCoord = [scale](double& coord) { coord = coord * scale; };
+    std::for_each(Z.begin(), Z.end(), scaleCoord);
+}
+void Rectangle::scale(double scale) {
+    auto scaleCoord = [scale](double& coord) { coord = coord * scale; };
+    std::for_each(X.begin(), X.end(), scaleCoord);
+    std::for_each(Y.begin(), Y.end(), scaleCoord);
+    std::for_each(Z.begin(), Z.end(), scaleCoord);
+};
+
+
+Parallelepiped::Parallelepiped(double len, double wid, double hgt) : length(len), width(wid), height(hgt) {
+    type = ShapeType::PARALLELEPIPED;
+    X.push_back(0); Y.push_back(0); Z.push_back(0); //вершина (0,0,0)
+    X.push_back(length); Y.push_back(0); Z.push_back(0); //вершина (lenght,0,0)
+    X.push_back(length); Y.push_back(width); Z.push_back(0); //вершина (lenght,width,0)
+    X.push_back(0); Y.push_back(width); Z.push_back(0); //вершина (0,width,0)
+
+    X.push_back(0); Y.push_back(0); Z.push_back(height); //вершина (0,0,hight)
+    X.push_back(length); Y.push_back(0); Z.push_back(height); //вершина (lenght,0,hight)
+    X.push_back(length); Y.push_back(width); Z.push_back(height); //вершина (lenght,width,hight)
+    X.push_back(0); Y.push_back(width); Z.push_back(height); //вершина (0,width,hight)
+ }
+
+double Parallelepiped::getLength() const { return length; }
+double Parallelepiped::getWidth() const { return width; }
+double Parallelepiped::getHeight() const { return height; }
+double Parallelepiped::getArea() const { return 2 * (length * width + length * height + width * height); }
+double Parallelepiped::getSurfaceArea() const { return 2 * (length * width + length * height + width * height); }
+double Parallelepiped::getVolume() const { return length * width * height; }
+
+void Parallelepiped::shift(double x, double y, double z) {
+    for (auto& iter : X) {
+        iter += x;
+    }
+    for (auto& iter : Y) {
+        iter += y;
+    }
+    for (auto& iter : Z) {
+        iter += z;
+    }
+}
+void Parallelepiped::scaleX(double scale) {
+    auto scaleCoord = [scale](double& coord) { coord = coord * scale; };
+    std::for_each(X.begin(), X.end(), scaleCoord);
+}
+void Parallelepiped::scaleY(double scale) {
+    auto scaleCoord = [scale](double& coord) { coord = coord * scale; };
+    std::for_each(Y.begin(), Y.end(), scaleCoord);
+}
+void Parallelepiped::scaleZ(double scale) {
+    auto scaleCoord = [scale](double& coord) { coord = coord * scale; };
+    std::for_each(Z.begin(), Z.end(), scaleCoord);
+}
+void Parallelepiped::scale(double scale) {
+    auto scaleCoord = [scale](double& coord) { coord = coord * scale; };
+    std::for_each(X.begin(), X.end(), scaleCoord);
+    std::for_each(Y.begin(), Y.end(), scaleCoord);
+    std::for_each(Z.begin(), Z.end(), scaleCoord);
+};
+
+
+Circle::Circle(double rad) : radius(rad) {
+    type = ShapeType::CIRCLE;
+    X.push_back(0); Y.push_back(0); Z.push_back(0); //центр окружности
 }
 
-Shape::Shape(std::vector<double> X, std::vector<double> Y, std::vector<double> Z, shapeType type) {
-	this->X = X;
-	this->Y = Y;
-	this->Z = Z;
-	this->type = type;
-	switch (type)
-	{
-	case shapeType::Line:
-		square = 0;
-		volume = 0;
-		surface_square = 0;
-		break;
-	case shapeType::Rectangle:
-		lenght = sqrt(pow(X[0] - X[1], 2) + pow(Y[0] - Y[1], 2) + pow(Z[0] - Z[1], 2));
-		width = sqrt(pow(X[1] - X[2], 2) + pow(Y[1] - Y[2], 2) + pow(Z[1] - Z[2], 2));
-		square = lenght * width;
-		volume = 0;
-		surface_square = 0;
-		break;
-	case shapeType::Parallelepiped:
-		lenght = sqrt(pow(X[0] - X[1], 2) + pow(Y[0] - Y[1], 2) + pow(Z[0] - Z[1], 2));
-		width = sqrt(pow(X[1] - X[2], 2) + pow(Y[1] - Y[2], 2) + pow(Z[1] - Z[2], 2));
-		hight = sqrt(pow(X[0] - X[3], 2) + pow(Y[0] - Y[3], 2) + pow(Z[0] - Z[3], 2));
-		square = 0;
-		volume = lenght * width;
-		surface_square = lenght * width * 2 + width * hight * 2 + lenght * hight * 2;
-		break;
-	case shapeType::Point:
-		square = 0;
-		volume = 0;
-		surface_square = 0;
-		break;
-	default:
-		break;
-	}
-}
+double Circle::getLength() const { return 0.0; }
+double Circle::getWidth() const { return 0.0; }
+double Circle::getHeight() const { return 0.0; }
+double Circle::getArea() const { return 3.14159 * radius * radius; }
+double Circle::getSurfaceArea() const { return 0.0; }
+double Circle::getVolume() const { return 0.0; }
 
-Shape::Shape(shapeType Line, double line_lenght) {
-	lenght = lenght;
-	width = 0;
-	hight = 0;
-	square = 0;
-	volume = 0;
-	surface_square = 0;
-	square = 0;
-	volume = 0;
-	surface_square = 0;
-	this->type = shapeType::Line;
-	X.push_back(0); Y.push_back(0); Z.push_back(0);		 //вершина (0,0,0)
-	X.push_back(line_lenght); Y.push_back(0); Z.push_back(0); //вершина(length, 0, 0)
-}
-
-Shape::Shape(shapeType Rectangle, double lenght, double width) {
-	X.push_back(0); Y.push_back(0); Z.push_back(0); //вершина (0,0,0)
-	X.push_back(lenght); Y.push_back(0); Z.push_back(0); //вершина (lenght,0,0)
-	X.push_back(lenght); Y.push_back(width); Z.push_back(0); //вершина (lenght,width,0)
-	X.push_back(0); Y.push_back(width); Z.push_back(0); //вершина (0,width,0)
-	lenght = lenght;
-	width = width;
-	hight = 0;
-	square = lenght * width;
-	volume = 0;
-	surface_square = 0;
-	type = shapeType::Rectangle;
+void Circle::shift(double x, double y, double z) {}
+void Circle::scale(double scale) {
+    radius *= scale;
 }
 
 
-Shape::Shape(shapeType Parallelepiped, double lenght, double width, double hight) {
 
-	X.push_back(0); Y.push_back(0); Z.push_back(0); //вершина (0,0,0)
-	X.push_back(lenght); Y.push_back(0); Z.push_back(0); //вершина (lenght,0,0)
-	X.push_back(lenght); Y.push_back(width); Z.push_back(0); //вершина (lenght,width,0)
-	X.push_back(0); Y.push_back(width); Z.push_back(0); //вершина (0,width,0)
-
-	X.push_back(0); Y.push_back(0); Z.push_back(hight); //вершина (0,0,hight)
-	X.push_back(lenght); Y.push_back(0); Z.push_back(hight); //вершина (lenght,0,hight)
-	X.push_back(lenght); Y.push_back(width); Z.push_back(hight); //вершина (lenght,width,hight)
-	X.push_back(0); Y.push_back(width); Z.push_back(hight); //вершина (0,width,hight)
-	lenght = lenght;
-	width = width;
-	hight = hight;
-	square = 0;
-	volume = lenght * width * hight;
-	surface_square = lenght * width * 2 + width * hight * 2 + lenght * hight * 2;
-	type = shapeType::Parallelepiped;
+Cylinder::Cylinder(double rad, double hgt) : radius(rad), height(hgt) {
+    type = ShapeType::CYLINDER;
+    X.push_back(0); Y.push_back(0); Z.push_back(0); //центр окружности основания
 }
 
+double Cylinder::getLength() const { return 0.0; }
+double Cylinder::getWidth() const  { return 0.0; }
+double Cylinder::getHeight() const { return height; }
+double Cylinder::getArea() const { return 3.14159 * radius * radius; }
+double Cylinder::getSurfaceArea() const { return 2 * 3.14159 * radius * (radius + height); }
+double Cylinder::getVolume() const { return 3.14159 * radius * radius * height; }
 
-shapeType Shape::get_type(){
-	return this->type;
+void Cylinder::shift(double x, double y, double z) {
+    for (auto& iter : X) {
+        iter += x;
+    }
+    for (auto& iter : Y) {
+        iter += y;
+    }
+    for (auto& iter : Z) {
+        iter += z;
+    }
+}
+void Cylinder::scaleZ(double scale) {
+    height *= scale;
+}
+void Cylinder::scale(double scale) {
+    height *= scale;
+    radius *= scale;
 }
 
-std::vector<double> Shape::get_X() {
-	return this->X;
-}
-
-std::vector<double> Shape::get_Y() {
-	return this->Y;
-}
-
-std::vector<double> Shape::get_Z() {
-	return this->Z;
-}
