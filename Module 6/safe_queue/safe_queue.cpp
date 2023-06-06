@@ -35,7 +35,7 @@ public:
 	//При нотификации условной переменной данные считываются из очереди.
 	std::function<void()> pop() {
 		std::unique_lock<std::mutex> lock(mutex);
-		cv.wait(lock, [this] { return !tasks.empty(); });
+		//cv.wait(lock, [this] { return !tasks.empty(); });
 		auto task = tasks.front();
 		tasks.pop();
 		return task;
@@ -109,7 +109,7 @@ int main(int argc, char** argv)
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 	thread_pool pool(treads);
-	for (int i = 0; i < 2000; ++i) {
+	for (int i = 0; i < 2; ++i) {
 		pool.submit([i] {
 			test_function("Task " + std::to_string(i));
 			std::this_thread::sleep_for(std::chrono::seconds(1));
