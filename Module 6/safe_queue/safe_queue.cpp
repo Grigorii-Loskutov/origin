@@ -16,8 +16,12 @@ class safe_queue {
 	std::queue<std::function<void()>> tasks;	//очередь для хранения задач
 	std::mutex mutex;							//для реализации блокировки
 	std::condition_variable cv;					//для уведомлений
+	
 
 public:
+	int getTaskSize() {
+		return tasks.size();
+	}
 	std::mutex& getMutex() {
 		return mutex;
 	}
@@ -35,7 +39,7 @@ public:
 	//При нотификации условной переменной данные считываются из очереди.
 	std::function<void()> pop() {
 		std::unique_lock<std::mutex> lock(mutex);
-		//cv.wait(lock, [this] { return !tasks.empty(); });
+		cv.wait(lock, [this] { return !tasks.empty(); });
 		auto task = tasks.front();
 		tasks.pop();
 		return task;
@@ -64,7 +68,7 @@ public:
 				});
 		}
 	}
-	~thread_pool() {
+	~thread_pool() = default;/* {
 		{
 			std::lock_guard<std::mutex> lock(task_queue.getMutex());
 			stop = true;
@@ -73,7 +77,7 @@ public:
 		for (auto& thread : threads) {
 			thread.join();
 		}
-	}
+	}*/
 	//Метод submit помещает в очередь очередную задачу.
 	//В качестве принимаемого аргумента метод может принимать или объект шаблона std::function, или объект шаблона package_task.
 	template <typename Func>
@@ -84,7 +88,7 @@ public:
 	//Метод work выбирает из очереди очередную задачи и исполняет ее.
 	//Данный метод передается конструктору потоков для исполнения
 	void work() {
-		while (true) {
+		while (task_queue.getTaskSize() > 0) {
 			auto task = task_queue.pop();
 			if (task != nullptr) {
 				task();
@@ -97,7 +101,7 @@ public:
 };
 //Тестовая функция
 void test_function(const std::string& name) {
-	std::this_thread::sleep_for(std::chrono::milliseconds(20));
+	std::this_thread::sleep_for(std::chrono::milliseconds(100));
 	std::cout << "Executing task: " << name << std::endl;
 }
 
@@ -109,13 +113,18 @@ int main(int argc, char** argv)
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 	thread_pool pool(treads);
-	for (int i = 0; i < 2; ++i) {
+	//Создадим поток для submit
+	std::thread T1 = std::thread([&pool]{for (int i = 0; i < 20; ++i) {
 		pool.submit([i] {
 			test_function("Task " + std::to_string(i));
 			std::this_thread::sleep_for(std::chrono::seconds(1));
 			});
-	}
-	pool.work();
+	}; });
+	T1.join();
+	//Создадим поток для work
+	std::thread T2 = std::thread([&pool] {pool.work(); });
+	T2.join();
+	std::this_thread::sleep_for(std::chrono::seconds(1));
 	std::cout << "All tasks completed." << std::endl;
 	return 0;
 
