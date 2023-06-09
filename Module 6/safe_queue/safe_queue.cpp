@@ -65,19 +65,22 @@ public:
 						task();
 					}
 				}
-				});
+			});
 		}
 	}
-	~thread_pool() = default;/* {
-		{
+	~thread_pool() {
+		/* {
 			std::lock_guard<std::mutex> lock(task_queue.getMutex());
 			stop = true;
-		}
-		task_queue.getCond().notify_all();
+		} */
+		//task_queue.getCond().notify_all();
+		/*std::lock_guard<std::mutex> lock(task_queue.getMutex());
+		task_queue.getCond().notify_all();*/
 		for (auto& thread : threads) {
-			thread.join();
+			if (thread.joinable()) { thread.join(); }
 		}
-	}*/
+		stop = true;
+	}
 	//Метод submit помещает в очередь очередную задачу.
 	//В качестве принимаемого аргумента метод может принимать или объект шаблона std::function, или объект шаблона package_task.
 	template <typename Func>
