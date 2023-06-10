@@ -54,19 +54,19 @@ class thread_pool {
 	bool stop;
 public:
 	thread_pool(size_t num_threads) : stop(false) {
-		auto task = this->work();
-		if (task != nullptr) { 
-			threads.emplace_back(task);
+		for (size_t i = 0; i < num_threads; ++i) {
+			threads.emplace_back([this]() {
+				while (task_queue.getTaskSize() > 0) {
+				auto task = task_queue.pop();
+				task();
+				}
+			});
 		}
+		/*for (size_t i = 0; i < num_threads; ++i) {
+			threads.emplace_back(std::thread(&thread_pool::work));
+		}*/
 	}
 	~thread_pool() {
-		/* {
-			std::lock_guard<std::mutex> lock(task_queue.getMutex());
-			stop = true;
-		} */
-		//task_queue.getCond().notify_all();
-		/*std::lock_guard<std::mutex> lock(task_queue.getMutex());
-		task_queue.getCond().notify_all();*/
 		for (auto& thread : threads) {
 			if (thread.joinable()) { thread.join(); }
 		}
@@ -81,13 +81,11 @@ public:
 
 	//Метод work выбирает из очереди очередную задачи и исполняет ее.
 	//Данный метод передается конструктору потоков для исполнения
-	std::function<void()> work() {
+	void work() {
 		while (task_queue.getTaskSize() > 0) {
 			auto task = task_queue.pop();
 			task();
-			return task;
 		}
-		return nullptr;
 	}
 };
 //Тестовая функция
@@ -99,12 +97,11 @@ void test_function(const std::string& name) {
 
 int main(int argc, char** argv)
 {
-	int treads = std::thread::hardware_concurrency();
+	int threads_num = std::thread::hardware_concurrency();
 	setlocale(LC_ALL, "Russia");
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
-	
-	thread_pool pool(treads);
+	thread_pool pool(threads_num);
 	//Создадим поток для submit
 	std::thread T1 = std::thread([&pool]{for (int i = 0; i < 20; ++i) {
 		pool.submit([i] {
