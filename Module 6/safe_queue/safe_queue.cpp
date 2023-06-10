@@ -54,18 +54,9 @@ class thread_pool {
 	bool stop;
 public:
 	thread_pool(size_t num_threads) : stop(false) {
-		for (size_t i = 0; i < num_threads; ++i) {
-			threads.emplace_back([this] {
-				while (true) {
-					auto task = task_queue.pop();
-					if (stop && task == nullptr) {
-						break;
-					}
-					if (task != nullptr) {
-						task();
-					}
-				}
-			});
+		auto task = this->work();
+		if (task != nullptr) { 
+			threads.emplace_back(task);
 		}
 	}
 	~thread_pool() {
@@ -90,16 +81,13 @@ public:
 
 	//Метод work выбирает из очереди очередную задачи и исполняет ее.
 	//Данный метод передается конструктору потоков для исполнения
-	void work() {
+	std::function<void()> work() {
 		while (task_queue.getTaskSize() > 0) {
 			auto task = task_queue.pop();
-			if (task != nullptr) {
-				task();
-			}
-			else {
-				break;
-			}
+			task();
+			return task;
 		}
+		return nullptr;
 	}
 };
 //Тестовая функция
@@ -115,6 +103,7 @@ int main(int argc, char** argv)
 	setlocale(LC_ALL, "Russia");
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
+	
 	thread_pool pool(treads);
 	//Создадим поток для submit
 	std::thread T1 = std::thread([&pool]{for (int i = 0; i < 20; ++i) {
@@ -130,6 +119,7 @@ int main(int argc, char** argv)
 	std::this_thread::sleep_for(std::chrono::seconds(1));
 	std::cout << "All tasks completed." << std::endl;
 	return 0;
+
 
 }
 
