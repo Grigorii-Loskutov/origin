@@ -19,6 +19,20 @@ SqlSelectQueryBuilder& SqlSelectQueryBuilder::AddWhere(const std::string Where_k
 	return *this;
 }
 
+SqlSelectQueryBuilder& SqlSelectQueryBuilder::AddColumns(const std::vector<std::string>& columns) {
+	for (auto const& i : columns) {
+		this->Column.emplace(i);
+	}
+	return *this;
+}
+
+SqlSelectQueryBuilder& SqlSelectQueryBuilder::AddManyWhere(const std::map<std::string, std::string>& kv) {
+	for (auto const& i : kv) {
+		this->Where[i.first]=i.second;
+	}
+	return *this;
+}
+
 std::string SqlSelectQueryBuilder::BuildQuery() {
 	std::string temp_str = "SELECT ";
 	int iter = 0;
