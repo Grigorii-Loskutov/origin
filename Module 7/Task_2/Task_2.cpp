@@ -1,8 +1,8 @@
-﻿// Task_2.cpp : Домашнее задание к занятию «Структурные шаблоны: Proxy, Decorator, Adapter»
+﻿// Task_2.cpp : Домашнее задание к занятию «Структурные шаблоны: Proxy, Decorator, Adapter». Задание 1
 // https://github.com/netology-code/dpcpp-homeworks/tree/main/02#readme
 
 #include <iostream>
-#include <iostream>
+#include <string>
 #include <windows.h>
 
 class Text {
