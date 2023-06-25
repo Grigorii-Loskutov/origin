@@ -32,6 +32,26 @@ private:
     VeryHeavyDatabase* real_db_;
 };
 
+class OneShotDB : VeryHeavyDatabase {
+public:
+    explicit OneShotDB(VeryHeavyDatabase* real_object, size_t shots = 1) : real_db_(real_object), count(1), max_count(shots){}
+    std::string GetData(const std::string& key) noexcept {
+        if (count <= max_count)
+        {
+            ++count;
+            return real_db_->GetData(key);
+        }
+        else
+        { 
+            return "error";
+        }
+    }
+private:
+    size_t count;
+    size_t max_count;
+    VeryHeavyDatabase* real_db_;
+};
+
 class TestDB : VeryHeavyDatabase {
 public:
     explicit TestDB(VeryHeavyDatabase* real_object) : real_db_(real_object) {}
@@ -53,6 +73,11 @@ int main(int argc, char** argv)
     std::cout << cached_db.GetData("key") << std::endl;
     std::cout << cached_db.GetData("key") << std::endl;
     std::cout << test_db.GetData("key") << std::endl;
+
+    auto limit_db = OneShotDB(std::addressof(real_db), 2);
+    std::cout << limit_db.GetData("key") << std::endl;
+    std::cout << limit_db.GetData("key") << std::endl;
+    std::cout << limit_db.GetData("key") << std::endl;
     return 0;
 }
 
