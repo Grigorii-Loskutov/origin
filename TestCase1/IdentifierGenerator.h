@@ -1,7 +1,7 @@
 #pragma once
+
 #include <string>
 #include <vector>
-
 class IdentifierGenerator
 {
 public:
@@ -9,7 +9,7 @@ public:
 	std::string GenerateNextIdentifier(const std::string& identifier);
 private:
 	// Метод для разбиения идентификатора на группы
-	std::vector<std::string> SplitIdentifier(const std::string& identifier);
+	std::vector<std::string> SplitIdentifier(std::string& identifier);
 
 	// Метод для соединения групп обратно в строку
 	std::string JoinIdentifier(const std::vector<std::string>& parts);
@@ -21,7 +21,6 @@ private:
 	bool IncrementPart(std::string& part);
 
 	// Набор допустимых букв и цифр
-	const std::string allowed_letters = "ABCEHIKLNPRSTUWXYZ";
+	const std::string allowed_letters = "ABCEHIKLNOPRSTUWXYZ";
 	const std::string allowed_digits = "123456789";
 };
-
