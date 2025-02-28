@@ -54,11 +54,6 @@ bool compareByAge(const Person& person1, const Person& person2) {
 	return person1.age < person2.age;
 }
 
-// Функция-компаратор для сортировки по месту работы
-bool compareByJob(const Job& job1, const Job& job2) {
-	return job1.name < job2.name;
-}
-
 // Метод класса PersonsList для вывода списка людей
 void PersonsList::print() {
 	std::cout << "\n";
