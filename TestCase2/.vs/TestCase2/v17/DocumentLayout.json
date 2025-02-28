@@ -1,0 +1,81 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\origin\\TestCase2\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{69C0C98C-1382-4EE1-8C24-E452452829C7}|TestCase2.vcxproj|E:\\origin\\TestCase2\\PersonClasses.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{69C0C98C-1382-4EE1-8C24-E452452829C7}|TestCase2.vcxproj|solutionrelative:PersonClasses.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69C0C98C-1382-4EE1-8C24-E452452829C7}|TestCase2.vcxproj|E:\\origin\\TestCase2\\PersonClasses.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{69C0C98C-1382-4EE1-8C24-E452452829C7}|TestCase2.vcxproj|solutionrelative:PersonClasses.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69C0C98C-1382-4EE1-8C24-E452452829C7}|TestCase2.vcxproj|E:\\origin\\TestCase2\\TestCase2.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{69C0C98C-1382-4EE1-8C24-E452452829C7}|TestCase2.vcxproj|solutionrelative:TestCase2.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 261,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PersonClasses.h",
+              "DocumentMoniker": "E:\\origin\\TestCase2\\PersonClasses.h",
+              "RelativeDocumentMoniker": "PersonClasses.h",
+              "ToolTip": "E:\\origin\\TestCase2\\PersonClasses.h",
+              "RelativeToolTip": "PersonClasses.h",
+              "ViewState": "AgIAACQAAAAAAAAAAAAjwDUAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-02-25T17:14:04.378Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TestCase2.cpp",
+              "DocumentMoniker": "E:\\origin\\TestCase2\\TestCase2.cpp",
+              "RelativeDocumentMoniker": "TestCase2.cpp",
+              "ToolTip": "E:\\origin\\TestCase2\\TestCase2.cpp",
+              "RelativeToolTip": "TestCase2.cpp",
+              "ViewState": "AgIAACoAAAAAAAAAAAAAADcAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-01-12T09:12:10.521Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedHeight": 226,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PersonClasses.cpp",
+              "DocumentMoniker": "E:\\origin\\TestCase2\\PersonClasses.cpp",
+              "RelativeDocumentMoniker": "PersonClasses.cpp",
+              "ToolTip": "E:\\origin\\TestCase2\\PersonClasses.cpp*",
+              "RelativeToolTip": "PersonClasses.cpp*",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAewFQAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-02-25T19:59:18.121Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
